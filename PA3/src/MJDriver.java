@@ -9,12 +9,13 @@
  * The default is the interpreter.
  *
  */
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 
 import mjparser.*;
 import ast_visitors.*;
+import ast.visitor.*;
 import ast.node.*;
+import symtable.*;
 
 public class MJDriver {
 
@@ -25,7 +26,7 @@ public class MJDriver {
      
       public static void main(String args[]) 
       {
-        
+        System.out.println("hello"); 
         if(args.length < 1)
         {         
             usage();
@@ -36,7 +37,8 @@ public class MJDriver {
         String filename = args[args.length-1];
 
         try {
-          // construct the lexer, 
+          
+		  // construct the lexer, 
           // the lexer will be the same for all of the parsers
           Yylex lexer = new Yylex(new FileReader(filename));
 
@@ -48,7 +50,9 @@ public class MJDriver {
 
           // and parse
 		  //parser.parse();
-          
+	
+		  ast.node.Node ast_root = (ast.node.Node)(parser.parse().value); 
+           
                 
           // print ast to file
           java.io.PrintStream astout =
@@ -58,10 +62,12 @@ public class MJDriver {
           System.out.println("Printing AST to " + filename + ".ast.dot");
 
           // create the symbol table
-          BuildSymTable stVisitor = new BuildSymTable();
-          ast_root.accept(stVisitor);
-          symtable.SymTable globalST = stVisitor.getSymTable();
+          /*BuildSymTable stVisitor = new BuildSymTable();
+          ast_root.accept(stVisitor);*/
+          //symtable.SymTable globalST = stVisitor.getSymTable();
+          SymTable globalST = new SymTable();
           
+		  /*
           // print ast to file
           java.io.PrintStream STout =
             new java.io.PrintStream(
@@ -70,7 +76,8 @@ public class MJDriver {
           globalST.outputDot(STout);
                     
           // perform type checking 
-          ast_root.accept(new CheckTypes(globalST));
+          
+		  ast_root.accept(new CheckTypes(globalST));
           
           // Determine whether to do register allocation or not.
           if ( args.length == 2 && args[0].equals("--regalloc") ) {
@@ -89,7 +96,7 @@ public class MJDriver {
           } else {
             // determine how to layout variables in AVR program
             ast_root.accept(new AVRallocVars(globalST));
-          }
+          }*/
 
           // generate AVR code that evaluates the program
           java.io.PrintStream avrsout =

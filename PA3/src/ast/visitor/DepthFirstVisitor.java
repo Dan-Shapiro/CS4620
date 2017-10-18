@@ -15,6 +15,9 @@ package ast.visitor;
 import ast.node.*;
 
 import java.util.*;
+import java.io.PrintWriter;
+import label.*;
+
 
 public class DepthFirstVisitor extends Visitor
 {
