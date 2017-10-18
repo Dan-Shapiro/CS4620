@@ -13,7 +13,8 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 
 import mjparser.*;
-//import ast_visitors.*;
+import ast_visitors.*;
+import ast.node.*;
 
 public class MJDriver {
 
@@ -46,8 +47,8 @@ public class MJDriver {
           System.out.println("Driver finds input filename: " + parser.programName);
 
           // and parse
-		  parser.parse();
-          /*
+		  //parser.parse();
+          
                 
           // print ast to file
           java.io.PrintStream astout =
@@ -96,7 +97,7 @@ public class MJDriver {
                       new java.io.FileOutputStream(filename + ".s"));
           ast_root.accept(new AVRgenVisitor(new PrintWriter(avrsout),globalST));
           System.out.println("Printing Atmel assembly to " + filename + ".s");
-          */
+          
 
         } catch(exceptions.SemanticException e) {
             System.err.println(e.getMessage());

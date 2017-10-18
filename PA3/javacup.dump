@@ -1,4 +1,30 @@
-Error: Syntax error @ Symbol: ID (unknown:2/1 - unknown:2/6)
+Warning : Terminal "UMINUS" was declared but never used
+Warning : Terminal "LT" was declared but never used
+Warning : Terminal "ASSIGN" was declared but never used
+Warning : Terminal "TONE_LITERAL" was declared but never used
+Warning : Terminal "MEGGYSETAUXLEDS" was declared but never used
+Warning : Terminal "MEGGYTONESTART" was declared but never used
+Warning : Terminal "EXTENDS" was declared but never used
+Warning : Terminal "LENGTH" was declared but never used
+Warning : Non terminal "exp" was declared but never used
+Warning : *** Production "type ::= MEGGYTONE " never reduced
+Warning : *** Production "type ::= MEGGYBUTTON " never reduced
+Warning : *** Production "type ::= MEGGYCOLOR " never reduced
+Warning : *** Production "type ::= VOID " never reduced
+Warning : *** Production "type ::= INT " never reduced
+Warning : *** Production "type ::= BYTE " never reduced
+Warning : *** Production "type ::= BOOLEAN " never reduced
+Warning : *** Production "formal_list ::= " never reduced
+Warning : *** Production "formal_list ::= formal_list formal " never reduced
+Warning : *** Production "formal_list ::= formal_list COMMA formal " never reduced
+Warning : *** Production "formal ::= type ID " never reduced
+Warning : *** Production "method_list ::= " never reduced
+Warning : *** Production "method_list ::= method_list method " never reduced
+Warning : *** Production "method ::= PUBLIC type ID LPAREN formal_list RPAREN LBRACE statement_list RBRACE " never reduced
+Warning : *** Production "method ::= PUBLIC type ID LPAREN formal_list RPAREN LBRACE statement_list RETURN expression SEMI " never reduced
+Warning : *** Production "class_list ::= " never reduced
+Warning : *** Production "class_list ::= class_list class " never reduced
+Warning : *** Production "class ::= CLASS ID LBRACE method_list RBRACE " never reduced
 ===== Terminals =====
 [0]EOF [1]error [2]PLUS [3]MINUS [4]TIMES 
 [5]LPAREN [6]RPAREN [7]LBRACE [8]RBRACE [9]BOOLEAN 
@@ -76,15 +102,2737 @@ Error: Syntax error @ Symbol: ID (unknown:2/1 - unknown:2/6)
 [53] exp_list ::= 
 
 ===== Viable Prefix Recognizer =====
-null
-null
+START lalr_state [0]: {
+  [program ::= (*) IMPORT MEGGY SEMI main_class class_dec , {EOF }]
+  [$START ::= (*) program EOF , {EOF }]
+}
+transition on IMPORT to state [2]
+transition on program to state [1]
+
+-------------------
+lalr_state [1]: {
+  [$START ::= program (*) EOF , {EOF }]
+}
+transition on EOF to state [110]
+
+-------------------
+lalr_state [2]: {
+  [program ::= IMPORT (*) MEGGY SEMI main_class class_dec , {EOF }]
+}
+transition on MEGGY to state [3]
+
+-------------------
+lalr_state [3]: {
+  [program ::= IMPORT MEGGY (*) SEMI main_class class_dec , {EOF }]
+}
+transition on SEMI to state [4]
+
+-------------------
+lalr_state [4]: {
+  [program ::= IMPORT MEGGY SEMI (*) main_class class_dec , {EOF }]
+  [main_class ::= (*) CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on main_class to state [6]
+transition on CLASS to state [5]
+
+-------------------
+lalr_state [5]: {
+  [main_class ::= CLASS (*) ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on ID to state [8]
+
+-------------------
+lalr_state [6]: {
+  [class_dec ::= (*) , {EOF }]
+  [program ::= IMPORT MEGGY SEMI main_class (*) class_dec , {EOF }]
+}
+transition on class_dec to state [7]
+
+-------------------
+lalr_state [7]: {
+  [program ::= IMPORT MEGGY SEMI main_class class_dec (*) , {EOF }]
+}
+
+-------------------
+lalr_state [8]: {
+  [main_class ::= CLASS ID (*) LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on LBRACE to state [9]
+
+-------------------
+lalr_state [9]: {
+  [main_class ::= CLASS ID LBRACE (*) PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on PUBLIC to state [10]
+
+-------------------
+lalr_state [10]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC (*) STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on STATIC to state [11]
+
+-------------------
+lalr_state [11]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC (*) VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on VOID to state [12]
+
+-------------------
+lalr_state [12]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID (*) MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on MAIN to state [13]
+
+-------------------
+lalr_state [13]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN (*) LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on LPAREN to state [14]
+
+-------------------
+lalr_state [14]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN (*) STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on STRING to state [15]
+
+-------------------
+lalr_state [15]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING (*) LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on LBRACKET to state [16]
+
+-------------------
+lalr_state [16]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET (*) RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on RBRACKET to state [17]
+
+-------------------
+lalr_state [17]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET (*) ID RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on ID to state [18]
+
+-------------------
+lalr_state [18]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID (*) RPAREN LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on RPAREN to state [19]
+
+-------------------
+lalr_state [19]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN (*) LBRACE statement_list RBRACE RBRACE , {EOF }]
+}
+transition on LBRACE to state [20]
+
+-------------------
+lalr_state [20]: {
+  [statement_list ::= (*) , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement_list ::= (*) statement_list statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE (*) statement_list RBRACE RBRACE , {EOF }]
+}
+transition on statement_list to state [21]
+
+-------------------
+lalr_state [21]: {
+  [statement ::= (*) IF LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYDELAY LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) LBRACE statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) WHILE LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement_list ::= statement_list (*) statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list (*) RBRACE RBRACE , {EOF }]
+  [statement ::= (*) expression DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on MEGGYGETPIXEL to state [42]
+transition on MEGGYDELAY to state [41]
+transition on NEW to state [40]
+transition on BUTTON_LITERAL to state [39]
+transition on MINUS to state [38]
+transition on FALSE to state [37]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on expression to state [35]
+transition on COLOR_LITERAL to state [34]
+transition on MEGGYSETPIXEL to state [33]
+transition on INT_LITERAL to state [32]
+transition on THIS to state [31]
+transition on ID to state [30]
+transition on LBRACE to state [29]
+transition on LPAREN to state [28]
+transition on IF to state [27]
+transition on TRUE to state [26]
+transition on NOT to state [25]
+transition on WHILE to state [24]
+transition on RBRACE to state [23]
+transition on statement to state [22]
+
+-------------------
+lalr_state [22]: {
+  [statement_list ::= statement_list statement (*) , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [23]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE (*) RBRACE , {EOF }]
+}
+transition on RBRACE to state [109]
+
+-------------------
+lalr_state [24]: {
+  [statement ::= WHILE (*) LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [105]
+
+-------------------
+lalr_state [25]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= NOT (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [104]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [26]: {
+  [expression ::= TRUE (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [27]: {
+  [statement ::= IF (*) LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= IF (*) LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [98]
+
+-------------------
+lalr_state [28]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= LPAREN (*) expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= LPAREN (*) BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on BYTE to state [94]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [93]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [29]: {
+  [statement_list ::= (*) , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement_list ::= (*) statement_list statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= LBRACE (*) statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on statement_list to state [91]
+
+-------------------
+lalr_state [30]: {
+  [expression ::= ID (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [31]: {
+  [expression ::= THIS (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [32]: {
+  [expression ::= INT_LITERAL (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [33]: {
+  [statement ::= MEGGYSETPIXEL (*) LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [83]
+
+-------------------
+lalr_state [34]: {
+  [expression ::= COLOR_LITERAL (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [35]: {
+  [statement ::= expression (*) DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on DOT to state [77]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [36]: {
+  [expression ::= MEGGYCHECKBUTTON (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [74]
+
+-------------------
+lalr_state [37]: {
+  [expression ::= FALSE (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [38]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= MINUS (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [73]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [39]: {
+  [expression ::= BUTTON_LITERAL (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [40]: {
+  [expression ::= NEW (*) ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on ID to state [70]
+
+-------------------
+lalr_state [41]: {
+  [statement ::= MEGGYDELAY (*) LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [66]
+
+-------------------
+lalr_state [42]: {
+  [expression ::= MEGGYGETPIXEL (*) LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [43]
+
+-------------------
+lalr_state [43]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= MEGGYGETPIXEL LPAREN (*) expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [44]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [44]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= MEGGYGETPIXEL LPAREN expression (*) COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on COMMA to state [45]
+
+-------------------
+lalr_state [45]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= MEGGYGETPIXEL LPAREN expression COMMA (*) expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [64]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [46]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression AND (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [63]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [47]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression PLUS (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [62]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [48]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression EQUAL (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [61]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [49]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression MINUS (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [60]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [50]: {
+  [expression ::= expression TIMES (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [59]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [51]: {
+  [expression ::= expression DOT (*) ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on ID to state [52]
+
+-------------------
+lalr_state [52]: {
+  [expression ::= expression DOT ID (*) LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [53]
+
+-------------------
+lalr_state [53]: {
+  [exp_list ::= (*) exp_list expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= (*) exp_list COMMA expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression DOT ID LPAREN (*) exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= (*) , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on exp_list to state [54]
+
+-------------------
+lalr_state [54]: {
+  [expression ::= expression DOT ID LPAREN exp_list (*) RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list (*) COMMA expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list (*) expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on NOT to state [25]
+transition on COLOR_LITERAL to state [34]
+transition on RPAREN to state [57]
+transition on THIS to state [31]
+transition on COMMA to state [56]
+transition on expression to state [55]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [55]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list expression (*) , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [56]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list COMMA (*) expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [58]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [57]: {
+  [expression ::= expression DOT ID LPAREN exp_list RPAREN (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [58]: {
+  [exp_list ::= exp_list COMMA expression (*) , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [59]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression TIMES expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [60]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression MINUS expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [61]: {
+  [expression ::= expression EQUAL expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [62]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression PLUS expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [63]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression AND expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [64]: {
+  [expression ::= MEGGYGETPIXEL LPAREN expression COMMA expression (*) RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [65]
+
+-------------------
+lalr_state [65]: {
+  [expression ::= MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [66]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= MEGGYDELAY LPAREN (*) expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [67]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [67]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= MEGGYDELAY LPAREN expression (*) RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [68]
+
+-------------------
+lalr_state [68]: {
+  [statement ::= MEGGYDELAY LPAREN expression RPAREN (*) SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on SEMI to state [69]
+
+-------------------
+lalr_state [69]: {
+  [statement ::= MEGGYDELAY LPAREN expression RPAREN SEMI (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [70]: {
+  [expression ::= NEW ID (*) LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [71]
+
+-------------------
+lalr_state [71]: {
+  [expression ::= NEW ID LPAREN (*) RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on RPAREN to state [72]
+
+-------------------
+lalr_state [72]: {
+  [expression ::= NEW ID LPAREN RPAREN (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [73]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= MINUS expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [74]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= MEGGYCHECKBUTTON LPAREN (*) expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [75]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [75]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= MEGGYCHECKBUTTON LPAREN expression (*) RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [76]
+
+-------------------
+lalr_state [76]: {
+  [expression ::= MEGGYCHECKBUTTON LPAREN expression RPAREN (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [77]: {
+  [expression ::= expression DOT (*) ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= expression DOT (*) ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on ID to state [78]
+
+-------------------
+lalr_state [78]: {
+  [expression ::= expression DOT ID (*) LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= expression DOT ID (*) LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on LPAREN to state [79]
+
+-------------------
+lalr_state [79]: {
+  [exp_list ::= (*) exp_list expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= (*) exp_list COMMA expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression DOT ID LPAREN (*) exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [exp_list ::= (*) , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= expression DOT ID LPAREN (*) exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on exp_list to state [80]
+
+-------------------
+lalr_state [80]: {
+  [expression ::= expression DOT ID LPAREN exp_list (*) RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list (*) COMMA expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= expression DOT ID LPAREN exp_list (*) RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [exp_list ::= exp_list (*) expression , {MINUS LPAREN RPAREN NOT COMMA NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on NOT to state [25]
+transition on COLOR_LITERAL to state [34]
+transition on RPAREN to state [81]
+transition on THIS to state [31]
+transition on COMMA to state [56]
+transition on expression to state [55]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [81]: {
+  [expression ::= expression DOT ID LPAREN exp_list RPAREN (*) , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= expression DOT ID LPAREN exp_list RPAREN (*) SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on SEMI to state [82]
+
+-------------------
+lalr_state [82]: {
+  [statement ::= expression DOT ID LPAREN exp_list RPAREN SEMI (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [83]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN (*) expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [84]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [84]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN expression (*) COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on COMMA to state [85]
+
+-------------------
+lalr_state [85]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA (*) expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [86]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [86]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA expression (*) COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES EQUAL AND COMMA DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on COMMA to state [87]
+
+-------------------
+lalr_state [87]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA expression COMMA (*) expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [88]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [88]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression (*) RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [89]
+
+-------------------
+lalr_state [89]: {
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN (*) SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on SEMI to state [90]
+
+-------------------
+lalr_state [90]: {
+  [statement ::= MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [91]: {
+  [statement ::= (*) IF LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= LBRACE statement_list (*) RBRACE , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) MEGGYDELAY LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) LBRACE statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) WHILE LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement_list ::= statement_list (*) statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) expression DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on MEGGYGETPIXEL to state [42]
+transition on MEGGYDELAY to state [41]
+transition on NEW to state [40]
+transition on BUTTON_LITERAL to state [39]
+transition on MINUS to state [38]
+transition on FALSE to state [37]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on expression to state [35]
+transition on COLOR_LITERAL to state [34]
+transition on MEGGYSETPIXEL to state [33]
+transition on INT_LITERAL to state [32]
+transition on THIS to state [31]
+transition on ID to state [30]
+transition on LBRACE to state [29]
+transition on LPAREN to state [28]
+transition on IF to state [27]
+transition on TRUE to state [26]
+transition on NOT to state [25]
+transition on WHILE to state [24]
+transition on RBRACE to state [92]
+transition on statement to state [22]
+
+-------------------
+lalr_state [92]: {
+  [statement ::= LBRACE statement_list RBRACE (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [93]: {
+  [expression ::= LPAREN expression (*) RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [97]
+
+-------------------
+lalr_state [94]: {
+  [expression ::= LPAREN BYTE (*) RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on RPAREN to state [95]
+
+-------------------
+lalr_state [95]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= LPAREN BYTE RPAREN (*) expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [96]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [96]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= LPAREN BYTE RPAREN expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [97]: {
+  [expression ::= LPAREN expression RPAREN (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [98]: {
+  [statement ::= IF LPAREN (*) expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= IF LPAREN (*) expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [99]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [99]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= IF LPAREN expression (*) RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= IF LPAREN expression (*) RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [100]
+
+-------------------
+lalr_state [100]: {
+  [statement ::= IF LPAREN expression RPAREN (*) statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYDELAY LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) LBRACE statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) WHILE LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= IF LPAREN expression RPAREN (*) statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) expression DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on MEGGYGETPIXEL to state [42]
+transition on MEGGYDELAY to state [41]
+transition on NEW to state [40]
+transition on BUTTON_LITERAL to state [39]
+transition on MINUS to state [38]
+transition on FALSE to state [37]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on expression to state [35]
+transition on COLOR_LITERAL to state [34]
+transition on MEGGYSETPIXEL to state [33]
+transition on INT_LITERAL to state [32]
+transition on THIS to state [31]
+transition on ID to state [30]
+transition on LBRACE to state [29]
+transition on LPAREN to state [28]
+transition on IF to state [27]
+transition on TRUE to state [26]
+transition on NOT to state [25]
+transition on WHILE to state [24]
+transition on statement to state [101]
+
+-------------------
+lalr_state [101]: {
+  [statement ::= IF LPAREN expression RPAREN statement (*) ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= IF LPAREN expression RPAREN statement (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on ELSE to state [102]
+
+-------------------
+lalr_state [102]: {
+  [statement ::= (*) IF LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYDELAY LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) LBRACE statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) WHILE LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) expression DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= IF LPAREN expression RPAREN statement ELSE (*) statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on MEGGYGETPIXEL to state [42]
+transition on MEGGYDELAY to state [41]
+transition on NEW to state [40]
+transition on BUTTON_LITERAL to state [39]
+transition on MINUS to state [38]
+transition on FALSE to state [37]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on expression to state [35]
+transition on COLOR_LITERAL to state [34]
+transition on MEGGYSETPIXEL to state [33]
+transition on INT_LITERAL to state [32]
+transition on THIS to state [31]
+transition on ID to state [30]
+transition on LBRACE to state [29]
+transition on LPAREN to state [28]
+transition on IF to state [27]
+transition on TRUE to state [26]
+transition on NOT to state [25]
+transition on WHILE to state [24]
+transition on statement to state [103]
+
+-------------------
+lalr_state [103]: {
+  [statement ::= IF LPAREN expression RPAREN statement ELSE statement (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [104]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= NOT expression (*) , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES LPAREN RPAREN EQUAL AND NOT COMMA DOT NEW MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+
+-------------------
+lalr_state [105]: {
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= WHILE LPAREN (*) expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on BUTTON_LITERAL to state [39]
+transition on LPAREN to state [28]
+transition on COLOR_LITERAL to state [34]
+transition on NOT to state [25]
+transition on THIS to state [31]
+transition on expression to state [106]
+transition on ID to state [30]
+transition on FALSE to state [37]
+transition on MEGGYGETPIXEL to state [42]
+transition on INT_LITERAL to state [32]
+transition on TRUE to state [26]
+transition on NEW to state [40]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on MINUS to state [38]
+
+-------------------
+lalr_state [106]: {
+  [expression ::= expression (*) TIMES expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) EQUAL expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [statement ::= WHILE LPAREN expression (*) RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= expression (*) MINUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) AND expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+  [expression ::= expression (*) PLUS expression , {PLUS MINUS TIMES RPAREN EQUAL AND DOT }]
+}
+transition on DOT to state [51]
+transition on TIMES to state [50]
+transition on MINUS to state [49]
+transition on EQUAL to state [48]
+transition on PLUS to state [47]
+transition on AND to state [46]
+transition on RPAREN to state [107]
+
+-------------------
+lalr_state [107]: {
+  [statement ::= (*) IF LPAREN expression RPAREN statement ELSE statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression TIMES expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) INT_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NOT expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) expression DOT ID LPAREN exp_list RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYDELAY LPAREN expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) LBRACE statement_list RBRACE , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression PLUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYCHECKBUTTON LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) TRUE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) THIS , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= WHILE LPAREN expression RPAREN (*) statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) WHILE LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression AND expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) COLOR_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) IF LPAREN expression RPAREN statement , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression MINUS expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) LPAREN BYTE RPAREN expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) FALSE , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) NEW ID LPAREN RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [statement ::= (*) MEGGYSETPIXEL LPAREN expression COMMA expression COMMA expression RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [statement ::= (*) expression DOT ID LPAREN exp_list RPAREN SEMI , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+  [expression ::= (*) expression EQUAL expression , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) MEGGYGETPIXEL LPAREN expression COMMA expression RPAREN , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) BUTTON_LITERAL , {PLUS MINUS TIMES EQUAL AND DOT }]
+  [expression ::= (*) ID , {PLUS MINUS TIMES EQUAL AND DOT }]
+}
+transition on MEGGYGETPIXEL to state [42]
+transition on MEGGYDELAY to state [41]
+transition on NEW to state [40]
+transition on BUTTON_LITERAL to state [39]
+transition on MINUS to state [38]
+transition on FALSE to state [37]
+transition on MEGGYCHECKBUTTON to state [36]
+transition on expression to state [35]
+transition on COLOR_LITERAL to state [34]
+transition on MEGGYSETPIXEL to state [33]
+transition on INT_LITERAL to state [32]
+transition on THIS to state [31]
+transition on ID to state [30]
+transition on LBRACE to state [29]
+transition on LPAREN to state [28]
+transition on IF to state [27]
+transition on TRUE to state [26]
+transition on NOT to state [25]
+transition on WHILE to state [24]
+transition on statement to state [108]
+
+-------------------
+lalr_state [108]: {
+  [statement ::= WHILE LPAREN expression RPAREN statement (*) , {MINUS LPAREN LBRACE RBRACE IF ELSE NOT WHILE NEW MEGGYSETPIXEL MEGGYDELAY MEGGYGETPIXEL MEGGYCHECKBUTTON INT_LITERAL ID TRUE FALSE COLOR_LITERAL BUTTON_LITERAL THIS }]
+}
+
+-------------------
+lalr_state [109]: {
+  [main_class ::= CLASS ID LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET ID RPAREN LBRACE statement_list RBRACE RBRACE (*) , {EOF }]
+}
+
+-------------------
+lalr_state [110]: {
+  [$START ::= program EOF (*) , {EOF }]
+}
+
+-------------------
+-------- ACTION_TABLE --------
+From state #0
+ [term 13:SHIFT(to state 2)]
+From state #1
+ [term 0:SHIFT(to state 110)]
+From state #2
+ [term 36:SHIFT(to state 3)]
+From state #3
+ [term 34:SHIFT(to state 4)]
+From state #4
+ [term 29:SHIFT(to state 5)]
+From state #5
+ [term 47:SHIFT(to state 8)]
+From state #6
+ [term 0:REDUCE(with prod 2)]
+From state #7
+ [term 0:REDUCE(with prod 1)]
+From state #8
+ [term 7:SHIFT(to state 9)]
+From state #9
+ [term 24:SHIFT(to state 10)]
+From state #10
+ [term 26:SHIFT(to state 11)]
+From state #11
+ [term 28:SHIFT(to state 12)]
+From state #12
+ [term 12:SHIFT(to state 13)]
+From state #13
+ [term 5:SHIFT(to state 14)]
+From state #14
+ [term 27:SHIFT(to state 15)]
+From state #15
+ [term 31:SHIFT(to state 16)]
+From state #16
+ [term 32:SHIFT(to state 17)]
+From state #17
+ [term 47:SHIFT(to state 18)]
+From state #18
+ [term 6:SHIFT(to state 19)]
+From state #19
+ [term 7:SHIFT(to state 20)]
+From state #20
+ [term 3:REDUCE(with prod 30)] [term 5:REDUCE(with prod 30)]
+ [term 7:REDUCE(with prod 30)] [term 8:REDUCE(with prod 30)]
+ [term 14:REDUCE(with prod 30)] [term 19:REDUCE(with prod 30)]
+ [term 20:REDUCE(with prod 30)] [term 23:REDUCE(with prod 30)]
+ [term 40:REDUCE(with prod 30)] [term 43:REDUCE(with prod 30)]
+ [term 44:REDUCE(with prod 30)] [term 45:REDUCE(with prod 30)]
+ [term 46:REDUCE(with prod 30)] [term 47:REDUCE(with prod 30)]
+ [term 48:REDUCE(with prod 30)] [term 49:REDUCE(with prod 30)]
+ [term 50:REDUCE(with prod 30)] [term 51:REDUCE(with prod 30)]
+ [term 53:REDUCE(with prod 30)]
+From state #21
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 7:SHIFT(to state 29)] [term 8:SHIFT(to state 23)]
+ [term 14:SHIFT(to state 27)] [term 19:SHIFT(to state 25)]
+ [term 20:SHIFT(to state 24)] [term 23:SHIFT(to state 40)]
+ [term 40:SHIFT(to state 33)] [term 43:SHIFT(to state 41)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #22
+ [term 3:REDUCE(with prod 29)] [term 5:REDUCE(with prod 29)]
+ [term 7:REDUCE(with prod 29)] [term 8:REDUCE(with prod 29)]
+ [term 14:REDUCE(with prod 29)] [term 19:REDUCE(with prod 29)]
+ [term 20:REDUCE(with prod 29)] [term 23:REDUCE(with prod 29)]
+ [term 40:REDUCE(with prod 29)] [term 43:REDUCE(with prod 29)]
+ [term 44:REDUCE(with prod 29)] [term 45:REDUCE(with prod 29)]
+ [term 46:REDUCE(with prod 29)] [term 47:REDUCE(with prod 29)]
+ [term 48:REDUCE(with prod 29)] [term 49:REDUCE(with prod 29)]
+ [term 50:REDUCE(with prod 29)] [term 51:REDUCE(with prod 29)]
+ [term 53:REDUCE(with prod 29)]
+From state #23
+ [term 8:SHIFT(to state 109)]
+From state #24
+ [term 5:SHIFT(to state 105)]
+From state #25
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #26
+ [term 2:REDUCE(with prod 43)] [term 3:REDUCE(with prod 43)]
+ [term 4:REDUCE(with prod 43)] [term 5:REDUCE(with prod 43)]
+ [term 6:REDUCE(with prod 43)] [term 17:REDUCE(with prod 43)]
+ [term 18:REDUCE(with prod 43)] [term 19:REDUCE(with prod 43)]
+ [term 21:REDUCE(with prod 43)] [term 22:REDUCE(with prod 43)]
+ [term 23:REDUCE(with prod 43)] [term 44:REDUCE(with prod 43)]
+ [term 45:REDUCE(with prod 43)] [term 46:REDUCE(with prod 43)]
+ [term 47:REDUCE(with prod 43)] [term 48:REDUCE(with prod 43)]
+ [term 49:REDUCE(with prod 43)] [term 50:REDUCE(with prod 43)]
+ [term 51:REDUCE(with prod 43)] [term 53:REDUCE(with prod 43)]
+From state #27
+ [term 5:SHIFT(to state 98)]
+From state #28
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 11:SHIFT(to state 94)] [term 19:SHIFT(to state 25)]
+ [term 23:SHIFT(to state 40)] [term 44:SHIFT(to state 42)]
+ [term 45:SHIFT(to state 36)] [term 46:SHIFT(to state 32)]
+ [term 47:SHIFT(to state 30)] [term 48:SHIFT(to state 26)]
+ [term 49:SHIFT(to state 37)] [term 50:SHIFT(to state 34)]
+ [term 51:SHIFT(to state 39)] [term 53:SHIFT(to state 31)]
+From state #29
+ [term 3:REDUCE(with prod 30)] [term 5:REDUCE(with prod 30)]
+ [term 7:REDUCE(with prod 30)] [term 8:REDUCE(with prod 30)]
+ [term 14:REDUCE(with prod 30)] [term 19:REDUCE(with prod 30)]
+ [term 20:REDUCE(with prod 30)] [term 23:REDUCE(with prod 30)]
+ [term 40:REDUCE(with prod 30)] [term 43:REDUCE(with prod 30)]
+ [term 44:REDUCE(with prod 30)] [term 45:REDUCE(with prod 30)]
+ [term 46:REDUCE(with prod 30)] [term 47:REDUCE(with prod 30)]
+ [term 48:REDUCE(with prod 30)] [term 49:REDUCE(with prod 30)]
+ [term 50:REDUCE(with prod 30)] [term 51:REDUCE(with prod 30)]
+ [term 53:REDUCE(with prod 30)]
+From state #30
+ [term 2:REDUCE(with prod 47)] [term 3:REDUCE(with prod 47)]
+ [term 4:REDUCE(with prod 47)] [term 5:REDUCE(with prod 47)]
+ [term 6:REDUCE(with prod 47)] [term 17:REDUCE(with prod 47)]
+ [term 18:REDUCE(with prod 47)] [term 19:REDUCE(with prod 47)]
+ [term 21:REDUCE(with prod 47)] [term 22:REDUCE(with prod 47)]
+ [term 23:REDUCE(with prod 47)] [term 44:REDUCE(with prod 47)]
+ [term 45:REDUCE(with prod 47)] [term 46:REDUCE(with prod 47)]
+ [term 47:REDUCE(with prod 47)] [term 48:REDUCE(with prod 47)]
+ [term 49:REDUCE(with prod 47)] [term 50:REDUCE(with prod 47)]
+ [term 51:REDUCE(with prod 47)] [term 53:REDUCE(with prod 47)]
+From state #31
+ [term 2:REDUCE(with prod 48)] [term 3:REDUCE(with prod 48)]
+ [term 4:REDUCE(with prod 48)] [term 5:REDUCE(with prod 48)]
+ [term 6:REDUCE(with prod 48)] [term 17:REDUCE(with prod 48)]
+ [term 18:REDUCE(with prod 48)] [term 19:REDUCE(with prod 48)]
+ [term 21:REDUCE(with prod 48)] [term 22:REDUCE(with prod 48)]
+ [term 23:REDUCE(with prod 48)] [term 44:REDUCE(with prod 48)]
+ [term 45:REDUCE(with prod 48)] [term 46:REDUCE(with prod 48)]
+ [term 47:REDUCE(with prod 48)] [term 48:REDUCE(with prod 48)]
+ [term 49:REDUCE(with prod 48)] [term 50:REDUCE(with prod 48)]
+ [term 51:REDUCE(with prod 48)] [term 53:REDUCE(with prod 48)]
+From state #32
+ [term 2:REDUCE(with prod 40)] [term 3:REDUCE(with prod 40)]
+ [term 4:REDUCE(with prod 40)] [term 5:REDUCE(with prod 40)]
+ [term 6:REDUCE(with prod 40)] [term 17:REDUCE(with prod 40)]
+ [term 18:REDUCE(with prod 40)] [term 19:REDUCE(with prod 40)]
+ [term 21:REDUCE(with prod 40)] [term 22:REDUCE(with prod 40)]
+ [term 23:REDUCE(with prod 40)] [term 44:REDUCE(with prod 40)]
+ [term 45:REDUCE(with prod 40)] [term 46:REDUCE(with prod 40)]
+ [term 47:REDUCE(with prod 40)] [term 48:REDUCE(with prod 40)]
+ [term 49:REDUCE(with prod 40)] [term 50:REDUCE(with prod 40)]
+ [term 51:REDUCE(with prod 40)] [term 53:REDUCE(with prod 40)]
+From state #33
+ [term 5:SHIFT(to state 83)]
+From state #34
+ [term 2:REDUCE(with prod 41)] [term 3:REDUCE(with prod 41)]
+ [term 4:REDUCE(with prod 41)] [term 5:REDUCE(with prod 41)]
+ [term 6:REDUCE(with prod 41)] [term 17:REDUCE(with prod 41)]
+ [term 18:REDUCE(with prod 41)] [term 19:REDUCE(with prod 41)]
+ [term 21:REDUCE(with prod 41)] [term 22:REDUCE(with prod 41)]
+ [term 23:REDUCE(with prod 41)] [term 44:REDUCE(with prod 41)]
+ [term 45:REDUCE(with prod 41)] [term 46:REDUCE(with prod 41)]
+ [term 47:REDUCE(with prod 41)] [term 48:REDUCE(with prod 41)]
+ [term 49:REDUCE(with prod 41)] [term 50:REDUCE(with prod 41)]
+ [term 51:REDUCE(with prod 41)] [term 53:REDUCE(with prod 41)]
+From state #35
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 22:SHIFT(to state 77)]
+From state #36
+ [term 5:SHIFT(to state 74)]
+From state #37
+ [term 2:REDUCE(with prod 44)] [term 3:REDUCE(with prod 44)]
+ [term 4:REDUCE(with prod 44)] [term 5:REDUCE(with prod 44)]
+ [term 6:REDUCE(with prod 44)] [term 17:REDUCE(with prod 44)]
+ [term 18:REDUCE(with prod 44)] [term 19:REDUCE(with prod 44)]
+ [term 21:REDUCE(with prod 44)] [term 22:REDUCE(with prod 44)]
+ [term 23:REDUCE(with prod 44)] [term 44:REDUCE(with prod 44)]
+ [term 45:REDUCE(with prod 44)] [term 46:REDUCE(with prod 44)]
+ [term 47:REDUCE(with prod 44)] [term 48:REDUCE(with prod 44)]
+ [term 49:REDUCE(with prod 44)] [term 50:REDUCE(with prod 44)]
+ [term 51:REDUCE(with prod 44)] [term 53:REDUCE(with prod 44)]
+From state #38
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #39
+ [term 2:REDUCE(with prod 42)] [term 3:REDUCE(with prod 42)]
+ [term 4:REDUCE(with prod 42)] [term 5:REDUCE(with prod 42)]
+ [term 6:REDUCE(with prod 42)] [term 17:REDUCE(with prod 42)]
+ [term 18:REDUCE(with prod 42)] [term 19:REDUCE(with prod 42)]
+ [term 21:REDUCE(with prod 42)] [term 22:REDUCE(with prod 42)]
+ [term 23:REDUCE(with prod 42)] [term 44:REDUCE(with prod 42)]
+ [term 45:REDUCE(with prod 42)] [term 46:REDUCE(with prod 42)]
+ [term 47:REDUCE(with prod 42)] [term 48:REDUCE(with prod 42)]
+ [term 49:REDUCE(with prod 42)] [term 50:REDUCE(with prod 42)]
+ [term 51:REDUCE(with prod 42)] [term 53:REDUCE(with prod 42)]
+From state #40
+ [term 47:SHIFT(to state 70)]
+From state #41
+ [term 5:SHIFT(to state 66)]
+From state #42
+ [term 5:SHIFT(to state 43)]
+From state #43
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #44
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 21:SHIFT(to state 45)]
+ [term 22:SHIFT(to state 51)]
+From state #45
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #46
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #47
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #48
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #49
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #50
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #51
+ [term 47:SHIFT(to state 52)]
+From state #52
+ [term 5:SHIFT(to state 53)]
+From state #53
+ [term 3:REDUCE(with prod 53)] [term 5:REDUCE(with prod 53)]
+ [term 6:REDUCE(with prod 53)] [term 19:REDUCE(with prod 53)]
+ [term 21:REDUCE(with prod 53)] [term 23:REDUCE(with prod 53)]
+ [term 44:REDUCE(with prod 53)] [term 45:REDUCE(with prod 53)]
+ [term 46:REDUCE(with prod 53)] [term 47:REDUCE(with prod 53)]
+ [term 48:REDUCE(with prod 53)] [term 49:REDUCE(with prod 53)]
+ [term 50:REDUCE(with prod 53)] [term 51:REDUCE(with prod 53)]
+ [term 53:REDUCE(with prod 53)]
+From state #54
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 6:SHIFT(to state 57)] [term 19:SHIFT(to state 25)]
+ [term 21:SHIFT(to state 56)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #55
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 52)]
+ [term 6:REDUCE(with prod 52)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 19:REDUCE(with prod 52)]
+ [term 21:REDUCE(with prod 52)] [term 22:SHIFT(to state 51)]
+ [term 23:REDUCE(with prod 52)] [term 44:REDUCE(with prod 52)]
+ [term 45:REDUCE(with prod 52)] [term 46:REDUCE(with prod 52)]
+ [term 47:REDUCE(with prod 52)] [term 48:REDUCE(with prod 52)]
+ [term 49:REDUCE(with prod 52)] [term 50:REDUCE(with prod 52)]
+ [term 51:REDUCE(with prod 52)] [term 53:REDUCE(with prod 52)]
+From state #56
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #57
+ [term 2:REDUCE(with prod 50)] [term 3:REDUCE(with prod 50)]
+ [term 4:REDUCE(with prod 50)] [term 5:REDUCE(with prod 50)]
+ [term 6:REDUCE(with prod 50)] [term 17:REDUCE(with prod 50)]
+ [term 18:REDUCE(with prod 50)] [term 19:REDUCE(with prod 50)]
+ [term 21:REDUCE(with prod 50)] [term 22:REDUCE(with prod 50)]
+ [term 23:REDUCE(with prod 50)] [term 44:REDUCE(with prod 50)]
+ [term 45:REDUCE(with prod 50)] [term 46:REDUCE(with prod 50)]
+ [term 47:REDUCE(with prod 50)] [term 48:REDUCE(with prod 50)]
+ [term 49:REDUCE(with prod 50)] [term 50:REDUCE(with prod 50)]
+ [term 51:REDUCE(with prod 50)] [term 53:REDUCE(with prod 50)]
+From state #58
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 51)]
+ [term 6:REDUCE(with prod 51)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 19:REDUCE(with prod 51)]
+ [term 21:REDUCE(with prod 51)] [term 22:SHIFT(to state 51)]
+ [term 23:REDUCE(with prod 51)] [term 44:REDUCE(with prod 51)]
+ [term 45:REDUCE(with prod 51)] [term 46:REDUCE(with prod 51)]
+ [term 47:REDUCE(with prod 51)] [term 48:REDUCE(with prod 51)]
+ [term 49:REDUCE(with prod 51)] [term 50:REDUCE(with prod 51)]
+ [term 51:REDUCE(with prod 51)] [term 53:REDUCE(with prod 51)]
+From state #59
+ [term 2:REDUCE(with prod 35)] [term 3:REDUCE(with prod 35)]
+ [term 4:REDUCE(with prod 35)] [term 5:REDUCE(with prod 35)]
+ [term 6:REDUCE(with prod 35)] [term 17:REDUCE(with prod 35)]
+ [term 18:REDUCE(with prod 35)] [term 19:REDUCE(with prod 35)]
+ [term 21:REDUCE(with prod 35)] [term 22:REDUCE(with prod 35)]
+ [term 23:REDUCE(with prod 35)] [term 44:REDUCE(with prod 35)]
+ [term 45:REDUCE(with prod 35)] [term 46:REDUCE(with prod 35)]
+ [term 47:REDUCE(with prod 35)] [term 48:REDUCE(with prod 35)]
+ [term 49:REDUCE(with prod 35)] [term 50:REDUCE(with prod 35)]
+ [term 51:REDUCE(with prod 35)] [term 53:REDUCE(with prod 35)]
+From state #60
+ [term 2:REDUCE(with prod 34)] [term 3:REDUCE(with prod 34)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 34)]
+ [term 6:REDUCE(with prod 34)] [term 17:REDUCE(with prod 34)]
+ [term 18:REDUCE(with prod 34)] [term 19:REDUCE(with prod 34)]
+ [term 21:REDUCE(with prod 34)] [term 22:REDUCE(with prod 34)]
+ [term 23:REDUCE(with prod 34)] [term 44:REDUCE(with prod 34)]
+ [term 45:REDUCE(with prod 34)] [term 46:REDUCE(with prod 34)]
+ [term 47:REDUCE(with prod 34)] [term 48:REDUCE(with prod 34)]
+ [term 49:REDUCE(with prod 34)] [term 50:REDUCE(with prod 34)]
+ [term 51:REDUCE(with prod 34)] [term 53:REDUCE(with prod 34)]
+From state #61
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 32)]
+ [term 6:REDUCE(with prod 32)] [term 17:REDUCE(with prod 32)]
+ [term 18:REDUCE(with prod 32)] [term 19:REDUCE(with prod 32)]
+ [term 21:REDUCE(with prod 32)] [term 22:REDUCE(with prod 32)]
+ [term 23:REDUCE(with prod 32)] [term 44:REDUCE(with prod 32)]
+ [term 45:REDUCE(with prod 32)] [term 46:REDUCE(with prod 32)]
+ [term 47:REDUCE(with prod 32)] [term 48:REDUCE(with prod 32)]
+ [term 49:REDUCE(with prod 32)] [term 50:REDUCE(with prod 32)]
+ [term 51:REDUCE(with prod 32)] [term 53:REDUCE(with prod 32)]
+From state #62
+ [term 2:REDUCE(with prod 33)] [term 3:REDUCE(with prod 33)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 33)]
+ [term 6:REDUCE(with prod 33)] [term 17:REDUCE(with prod 33)]
+ [term 18:REDUCE(with prod 33)] [term 19:REDUCE(with prod 33)]
+ [term 21:REDUCE(with prod 33)] [term 22:REDUCE(with prod 33)]
+ [term 23:REDUCE(with prod 33)] [term 44:REDUCE(with prod 33)]
+ [term 45:REDUCE(with prod 33)] [term 46:REDUCE(with prod 33)]
+ [term 47:REDUCE(with prod 33)] [term 48:REDUCE(with prod 33)]
+ [term 49:REDUCE(with prod 33)] [term 50:REDUCE(with prod 33)]
+ [term 51:REDUCE(with prod 33)] [term 53:REDUCE(with prod 33)]
+From state #63
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 31)]
+ [term 6:REDUCE(with prod 31)] [term 17:SHIFT(to state 48)]
+ [term 18:REDUCE(with prod 31)] [term 19:REDUCE(with prod 31)]
+ [term 21:REDUCE(with prod 31)] [term 22:REDUCE(with prod 31)]
+ [term 23:REDUCE(with prod 31)] [term 44:REDUCE(with prod 31)]
+ [term 45:REDUCE(with prod 31)] [term 46:REDUCE(with prod 31)]
+ [term 47:REDUCE(with prod 31)] [term 48:REDUCE(with prod 31)]
+ [term 49:REDUCE(with prod 31)] [term 50:REDUCE(with prod 31)]
+ [term 51:REDUCE(with prod 31)] [term 53:REDUCE(with prod 31)]
+From state #64
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 65)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #65
+ [term 2:REDUCE(with prod 37)] [term 3:REDUCE(with prod 37)]
+ [term 4:REDUCE(with prod 37)] [term 5:REDUCE(with prod 37)]
+ [term 6:REDUCE(with prod 37)] [term 17:REDUCE(with prod 37)]
+ [term 18:REDUCE(with prod 37)] [term 19:REDUCE(with prod 37)]
+ [term 21:REDUCE(with prod 37)] [term 22:REDUCE(with prod 37)]
+ [term 23:REDUCE(with prod 37)] [term 44:REDUCE(with prod 37)]
+ [term 45:REDUCE(with prod 37)] [term 46:REDUCE(with prod 37)]
+ [term 47:REDUCE(with prod 37)] [term 48:REDUCE(with prod 37)]
+ [term 49:REDUCE(with prod 37)] [term 50:REDUCE(with prod 37)]
+ [term 51:REDUCE(with prod 37)] [term 53:REDUCE(with prod 37)]
+From state #66
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #67
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 68)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #68
+ [term 34:SHIFT(to state 69)]
+From state #69
+ [term 3:REDUCE(with prod 23)] [term 5:REDUCE(with prod 23)]
+ [term 7:REDUCE(with prod 23)] [term 8:REDUCE(with prod 23)]
+ [term 14:REDUCE(with prod 23)] [term 15:REDUCE(with prod 23)]
+ [term 19:REDUCE(with prod 23)] [term 20:REDUCE(with prod 23)]
+ [term 23:REDUCE(with prod 23)] [term 40:REDUCE(with prod 23)]
+ [term 43:REDUCE(with prod 23)] [term 44:REDUCE(with prod 23)]
+ [term 45:REDUCE(with prod 23)] [term 46:REDUCE(with prod 23)]
+ [term 47:REDUCE(with prod 23)] [term 48:REDUCE(with prod 23)]
+ [term 49:REDUCE(with prod 23)] [term 50:REDUCE(with prod 23)]
+ [term 51:REDUCE(with prod 23)] [term 53:REDUCE(with prod 23)]
+From state #70
+ [term 5:SHIFT(to state 71)]
+From state #71
+ [term 6:SHIFT(to state 72)]
+From state #72
+ [term 2:REDUCE(with prod 49)] [term 3:REDUCE(with prod 49)]
+ [term 4:REDUCE(with prod 49)] [term 5:REDUCE(with prod 49)]
+ [term 6:REDUCE(with prod 49)] [term 17:REDUCE(with prod 49)]
+ [term 18:REDUCE(with prod 49)] [term 19:REDUCE(with prod 49)]
+ [term 21:REDUCE(with prod 49)] [term 22:REDUCE(with prod 49)]
+ [term 23:REDUCE(with prod 49)] [term 44:REDUCE(with prod 49)]
+ [term 45:REDUCE(with prod 49)] [term 46:REDUCE(with prod 49)]
+ [term 47:REDUCE(with prod 49)] [term 48:REDUCE(with prod 49)]
+ [term 49:REDUCE(with prod 49)] [term 50:REDUCE(with prod 49)]
+ [term 51:REDUCE(with prod 49)] [term 53:REDUCE(with prod 49)]
+From state #73
+ [term 2:REDUCE(with prod 36)] [term 3:REDUCE(with prod 36)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 36)]
+ [term 6:REDUCE(with prod 36)] [term 17:REDUCE(with prod 36)]
+ [term 18:REDUCE(with prod 36)] [term 19:REDUCE(with prod 36)]
+ [term 21:REDUCE(with prod 36)] [term 22:REDUCE(with prod 36)]
+ [term 23:REDUCE(with prod 36)] [term 44:REDUCE(with prod 36)]
+ [term 45:REDUCE(with prod 36)] [term 46:REDUCE(with prod 36)]
+ [term 47:REDUCE(with prod 36)] [term 48:REDUCE(with prod 36)]
+ [term 49:REDUCE(with prod 36)] [term 50:REDUCE(with prod 36)]
+ [term 51:REDUCE(with prod 36)] [term 53:REDUCE(with prod 36)]
+From state #74
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #75
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 76)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #76
+ [term 2:REDUCE(with prod 38)] [term 3:REDUCE(with prod 38)]
+ [term 4:REDUCE(with prod 38)] [term 5:REDUCE(with prod 38)]
+ [term 6:REDUCE(with prod 38)] [term 17:REDUCE(with prod 38)]
+ [term 18:REDUCE(with prod 38)] [term 19:REDUCE(with prod 38)]
+ [term 21:REDUCE(with prod 38)] [term 22:REDUCE(with prod 38)]
+ [term 23:REDUCE(with prod 38)] [term 44:REDUCE(with prod 38)]
+ [term 45:REDUCE(with prod 38)] [term 46:REDUCE(with prod 38)]
+ [term 47:REDUCE(with prod 38)] [term 48:REDUCE(with prod 38)]
+ [term 49:REDUCE(with prod 38)] [term 50:REDUCE(with prod 38)]
+ [term 51:REDUCE(with prod 38)] [term 53:REDUCE(with prod 38)]
+From state #77
+ [term 47:SHIFT(to state 78)]
+From state #78
+ [term 5:SHIFT(to state 79)]
+From state #79
+ [term 3:REDUCE(with prod 53)] [term 5:REDUCE(with prod 53)]
+ [term 6:REDUCE(with prod 53)] [term 19:REDUCE(with prod 53)]
+ [term 21:REDUCE(with prod 53)] [term 23:REDUCE(with prod 53)]
+ [term 44:REDUCE(with prod 53)] [term 45:REDUCE(with prod 53)]
+ [term 46:REDUCE(with prod 53)] [term 47:REDUCE(with prod 53)]
+ [term 48:REDUCE(with prod 53)] [term 49:REDUCE(with prod 53)]
+ [term 50:REDUCE(with prod 53)] [term 51:REDUCE(with prod 53)]
+ [term 53:REDUCE(with prod 53)]
+From state #80
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 6:SHIFT(to state 81)] [term 19:SHIFT(to state 25)]
+ [term 21:SHIFT(to state 56)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #81
+ [term 2:REDUCE(with prod 50)] [term 3:REDUCE(with prod 50)]
+ [term 4:REDUCE(with prod 50)] [term 17:REDUCE(with prod 50)]
+ [term 18:REDUCE(with prod 50)] [term 22:REDUCE(with prod 50)]
+ [term 34:SHIFT(to state 82)]
+From state #82
+ [term 3:REDUCE(with prod 27)] [term 5:REDUCE(with prod 27)]
+ [term 7:REDUCE(with prod 27)] [term 8:REDUCE(with prod 27)]
+ [term 14:REDUCE(with prod 27)] [term 15:REDUCE(with prod 27)]
+ [term 19:REDUCE(with prod 27)] [term 20:REDUCE(with prod 27)]
+ [term 23:REDUCE(with prod 27)] [term 40:REDUCE(with prod 27)]
+ [term 43:REDUCE(with prod 27)] [term 44:REDUCE(with prod 27)]
+ [term 45:REDUCE(with prod 27)] [term 46:REDUCE(with prod 27)]
+ [term 47:REDUCE(with prod 27)] [term 48:REDUCE(with prod 27)]
+ [term 49:REDUCE(with prod 27)] [term 50:REDUCE(with prod 27)]
+ [term 51:REDUCE(with prod 27)] [term 53:REDUCE(with prod 27)]
+From state #83
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #84
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 21:SHIFT(to state 85)]
+ [term 22:SHIFT(to state 51)]
+From state #85
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #86
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 21:SHIFT(to state 87)]
+ [term 22:SHIFT(to state 51)]
+From state #87
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #88
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 89)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #89
+ [term 34:SHIFT(to state 90)]
+From state #90
+ [term 3:REDUCE(with prod 22)] [term 5:REDUCE(with prod 22)]
+ [term 7:REDUCE(with prod 22)] [term 8:REDUCE(with prod 22)]
+ [term 14:REDUCE(with prod 22)] [term 15:REDUCE(with prod 22)]
+ [term 19:REDUCE(with prod 22)] [term 20:REDUCE(with prod 22)]
+ [term 23:REDUCE(with prod 22)] [term 40:REDUCE(with prod 22)]
+ [term 43:REDUCE(with prod 22)] [term 44:REDUCE(with prod 22)]
+ [term 45:REDUCE(with prod 22)] [term 46:REDUCE(with prod 22)]
+ [term 47:REDUCE(with prod 22)] [term 48:REDUCE(with prod 22)]
+ [term 49:REDUCE(with prod 22)] [term 50:REDUCE(with prod 22)]
+ [term 51:REDUCE(with prod 22)] [term 53:REDUCE(with prod 22)]
+From state #91
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 7:SHIFT(to state 29)] [term 8:SHIFT(to state 92)]
+ [term 14:SHIFT(to state 27)] [term 19:SHIFT(to state 25)]
+ [term 20:SHIFT(to state 24)] [term 23:SHIFT(to state 40)]
+ [term 40:SHIFT(to state 33)] [term 43:SHIFT(to state 41)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #92
+ [term 3:REDUCE(with prod 28)] [term 5:REDUCE(with prod 28)]
+ [term 7:REDUCE(with prod 28)] [term 8:REDUCE(with prod 28)]
+ [term 14:REDUCE(with prod 28)] [term 15:REDUCE(with prod 28)]
+ [term 19:REDUCE(with prod 28)] [term 20:REDUCE(with prod 28)]
+ [term 23:REDUCE(with prod 28)] [term 40:REDUCE(with prod 28)]
+ [term 43:REDUCE(with prod 28)] [term 44:REDUCE(with prod 28)]
+ [term 45:REDUCE(with prod 28)] [term 46:REDUCE(with prod 28)]
+ [term 47:REDUCE(with prod 28)] [term 48:REDUCE(with prod 28)]
+ [term 49:REDUCE(with prod 28)] [term 50:REDUCE(with prod 28)]
+ [term 51:REDUCE(with prod 28)] [term 53:REDUCE(with prod 28)]
+From state #93
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 97)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #94
+ [term 6:SHIFT(to state 95)]
+From state #95
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #96
+ [term 2:REDUCE(with prod 39)] [term 3:REDUCE(with prod 39)]
+ [term 4:REDUCE(with prod 39)] [term 5:REDUCE(with prod 39)]
+ [term 6:REDUCE(with prod 39)] [term 17:REDUCE(with prod 39)]
+ [term 18:REDUCE(with prod 39)] [term 19:REDUCE(with prod 39)]
+ [term 21:REDUCE(with prod 39)] [term 22:REDUCE(with prod 39)]
+ [term 23:REDUCE(with prod 39)] [term 44:REDUCE(with prod 39)]
+ [term 45:REDUCE(with prod 39)] [term 46:REDUCE(with prod 39)]
+ [term 47:REDUCE(with prod 39)] [term 48:REDUCE(with prod 39)]
+ [term 49:REDUCE(with prod 39)] [term 50:REDUCE(with prod 39)]
+ [term 51:REDUCE(with prod 39)] [term 53:REDUCE(with prod 39)]
+From state #97
+ [term 2:REDUCE(with prod 46)] [term 3:REDUCE(with prod 46)]
+ [term 4:REDUCE(with prod 46)] [term 5:REDUCE(with prod 46)]
+ [term 6:REDUCE(with prod 46)] [term 17:REDUCE(with prod 46)]
+ [term 18:REDUCE(with prod 46)] [term 19:REDUCE(with prod 46)]
+ [term 21:REDUCE(with prod 46)] [term 22:REDUCE(with prod 46)]
+ [term 23:REDUCE(with prod 46)] [term 44:REDUCE(with prod 46)]
+ [term 45:REDUCE(with prod 46)] [term 46:REDUCE(with prod 46)]
+ [term 47:REDUCE(with prod 46)] [term 48:REDUCE(with prod 46)]
+ [term 49:REDUCE(with prod 46)] [term 50:REDUCE(with prod 46)]
+ [term 51:REDUCE(with prod 46)] [term 53:REDUCE(with prod 46)]
+From state #98
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #99
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 100)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #100
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 7:SHIFT(to state 29)] [term 14:SHIFT(to state 27)]
+ [term 19:SHIFT(to state 25)] [term 20:SHIFT(to state 24)]
+ [term 23:SHIFT(to state 40)] [term 40:SHIFT(to state 33)]
+ [term 43:SHIFT(to state 41)] [term 44:SHIFT(to state 42)]
+ [term 45:SHIFT(to state 36)] [term 46:SHIFT(to state 32)]
+ [term 47:SHIFT(to state 30)] [term 48:SHIFT(to state 26)]
+ [term 49:SHIFT(to state 37)] [term 50:SHIFT(to state 34)]
+ [term 51:SHIFT(to state 39)] [term 53:SHIFT(to state 31)]
+From state #101
+ [term 3:REDUCE(with prod 24)] [term 5:REDUCE(with prod 24)]
+ [term 7:REDUCE(with prod 24)] [term 8:REDUCE(with prod 24)]
+ [term 14:REDUCE(with prod 24)] [term 15:SHIFT(to state 102)]
+ [term 19:REDUCE(with prod 24)] [term 20:REDUCE(with prod 24)]
+ [term 23:REDUCE(with prod 24)] [term 40:REDUCE(with prod 24)]
+ [term 43:REDUCE(with prod 24)] [term 44:REDUCE(with prod 24)]
+ [term 45:REDUCE(with prod 24)] [term 46:REDUCE(with prod 24)]
+ [term 47:REDUCE(with prod 24)] [term 48:REDUCE(with prod 24)]
+ [term 49:REDUCE(with prod 24)] [term 50:REDUCE(with prod 24)]
+ [term 51:REDUCE(with prod 24)] [term 53:REDUCE(with prod 24)]
+From state #102
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 7:SHIFT(to state 29)] [term 14:SHIFT(to state 27)]
+ [term 19:SHIFT(to state 25)] [term 20:SHIFT(to state 24)]
+ [term 23:SHIFT(to state 40)] [term 40:SHIFT(to state 33)]
+ [term 43:SHIFT(to state 41)] [term 44:SHIFT(to state 42)]
+ [term 45:SHIFT(to state 36)] [term 46:SHIFT(to state 32)]
+ [term 47:SHIFT(to state 30)] [term 48:SHIFT(to state 26)]
+ [term 49:SHIFT(to state 37)] [term 50:SHIFT(to state 34)]
+ [term 51:SHIFT(to state 39)] [term 53:SHIFT(to state 31)]
+From state #103
+ [term 3:REDUCE(with prod 25)] [term 5:REDUCE(with prod 25)]
+ [term 7:REDUCE(with prod 25)] [term 8:REDUCE(with prod 25)]
+ [term 14:REDUCE(with prod 25)] [term 15:REDUCE(with prod 25)]
+ [term 19:REDUCE(with prod 25)] [term 20:REDUCE(with prod 25)]
+ [term 23:REDUCE(with prod 25)] [term 40:REDUCE(with prod 25)]
+ [term 43:REDUCE(with prod 25)] [term 44:REDUCE(with prod 25)]
+ [term 45:REDUCE(with prod 25)] [term 46:REDUCE(with prod 25)]
+ [term 47:REDUCE(with prod 25)] [term 48:REDUCE(with prod 25)]
+ [term 49:REDUCE(with prod 25)] [term 50:REDUCE(with prod 25)]
+ [term 51:REDUCE(with prod 25)] [term 53:REDUCE(with prod 25)]
+From state #104
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 5:REDUCE(with prod 45)]
+ [term 6:REDUCE(with prod 45)] [term 17:SHIFT(to state 48)]
+ [term 18:SHIFT(to state 46)] [term 19:REDUCE(with prod 45)]
+ [term 21:REDUCE(with prod 45)] [term 22:SHIFT(to state 51)]
+ [term 23:REDUCE(with prod 45)] [term 44:REDUCE(with prod 45)]
+ [term 45:REDUCE(with prod 45)] [term 46:REDUCE(with prod 45)]
+ [term 47:REDUCE(with prod 45)] [term 48:REDUCE(with prod 45)]
+ [term 49:REDUCE(with prod 45)] [term 50:REDUCE(with prod 45)]
+ [term 51:REDUCE(with prod 45)] [term 53:REDUCE(with prod 45)]
+From state #105
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 19:SHIFT(to state 25)] [term 23:SHIFT(to state 40)]
+ [term 44:SHIFT(to state 42)] [term 45:SHIFT(to state 36)]
+ [term 46:SHIFT(to state 32)] [term 47:SHIFT(to state 30)]
+ [term 48:SHIFT(to state 26)] [term 49:SHIFT(to state 37)]
+ [term 50:SHIFT(to state 34)] [term 51:SHIFT(to state 39)]
+ [term 53:SHIFT(to state 31)]
+From state #106
+ [term 2:SHIFT(to state 47)] [term 3:SHIFT(to state 49)]
+ [term 4:SHIFT(to state 50)] [term 6:SHIFT(to state 107)]
+ [term 17:SHIFT(to state 48)] [term 18:SHIFT(to state 46)]
+ [term 22:SHIFT(to state 51)]
+From state #107
+ [term 3:SHIFT(to state 38)] [term 5:SHIFT(to state 28)]
+ [term 7:SHIFT(to state 29)] [term 14:SHIFT(to state 27)]
+ [term 19:SHIFT(to state 25)] [term 20:SHIFT(to state 24)]
+ [term 23:SHIFT(to state 40)] [term 40:SHIFT(to state 33)]
+ [term 43:SHIFT(to state 41)] [term 44:SHIFT(to state 42)]
+ [term 45:SHIFT(to state 36)] [term 46:SHIFT(to state 32)]
+ [term 47:SHIFT(to state 30)] [term 48:SHIFT(to state 26)]
+ [term 49:SHIFT(to state 37)] [term 50:SHIFT(to state 34)]
+ [term 51:SHIFT(to state 39)] [term 53:SHIFT(to state 31)]
+From state #108
+ [term 3:REDUCE(with prod 26)] [term 5:REDUCE(with prod 26)]
+ [term 7:REDUCE(with prod 26)] [term 8:REDUCE(with prod 26)]
+ [term 14:REDUCE(with prod 26)] [term 15:REDUCE(with prod 26)]
+ [term 19:REDUCE(with prod 26)] [term 20:REDUCE(with prod 26)]
+ [term 23:REDUCE(with prod 26)] [term 40:REDUCE(with prod 26)]
+ [term 43:REDUCE(with prod 26)] [term 44:REDUCE(with prod 26)]
+ [term 45:REDUCE(with prod 26)] [term 46:REDUCE(with prod 26)]
+ [term 47:REDUCE(with prod 26)] [term 48:REDUCE(with prod 26)]
+ [term 49:REDUCE(with prod 26)] [term 50:REDUCE(with prod 26)]
+ [term 51:REDUCE(with prod 26)] [term 53:REDUCE(with prod 26)]
+From state #109
+ [term 0:REDUCE(with prod 3)]
+From state #110
+ [term 0:REDUCE(with prod 0)]
+------------------------------
+-------- REDUCE_TABLE --------
+From state #0
+ [non term 0->state 1]
+From state #1
+From state #2
+From state #3
+From state #4
+ [non term 5->state 6]
+From state #5
+From state #6
+ [non term 8->state 7]
+From state #7
+From state #8
+From state #9
+From state #10
+From state #11
+From state #12
+From state #13
+From state #14
+From state #15
+From state #16
+From state #17
+From state #18
+From state #19
+From state #20
+ [non term 4->state 21]
+From state #21
+ [non term 3->state 22] [non term 7->state 35]
+From state #22
+From state #23
+From state #24
+From state #25
+ [non term 7->state 104]
+From state #26
+From state #27
+From state #28
+ [non term 7->state 93]
+From state #29
+ [non term 4->state 91]
+From state #30
+From state #31
+From state #32
+From state #33
+From state #34
+From state #35
+From state #36
+From state #37
+From state #38
+ [non term 7->state 73]
+From state #39
+From state #40
+From state #41
+From state #42
+From state #43
+ [non term 7->state 44]
+From state #44
+From state #45
+ [non term 7->state 64]
+From state #46
+ [non term 7->state 63]
+From state #47
+ [non term 7->state 62]
+From state #48
+ [non term 7->state 61]
+From state #49
+ [non term 7->state 60]
+From state #50
+ [non term 7->state 59]
+From state #51
+From state #52
+From state #53
+ [non term 2->state 54]
+From state #54
+ [non term 7->state 55]
+From state #55
+From state #56
+ [non term 7->state 58]
+From state #57
+From state #58
+From state #59
+From state #60
+From state #61
+From state #62
+From state #63
+From state #64
+From state #65
+From state #66
+ [non term 7->state 67]
+From state #67
+From state #68
+From state #69
+From state #70
+From state #71
+From state #72
+From state #73
+From state #74
+ [non term 7->state 75]
+From state #75
+From state #76
+From state #77
+From state #78
+From state #79
+ [non term 2->state 80]
+From state #80
+ [non term 7->state 55]
+From state #81
+From state #82
+From state #83
+ [non term 7->state 84]
+From state #84
+From state #85
+ [non term 7->state 86]
+From state #86
+From state #87
+ [non term 7->state 88]
+From state #88
+From state #89
+From state #90
+From state #91
+ [non term 3->state 22] [non term 7->state 35]
+From state #92
+From state #93
+From state #94
+From state #95
+ [non term 7->state 96]
+From state #96
+From state #97
+From state #98
+ [non term 7->state 99]
+From state #99
+From state #100
+ [non term 3->state 101] [non term 7->state 35]
+From state #101
+From state #102
+ [non term 3->state 103] [non term 7->state 35]
+From state #103
+From state #104
+From state #105
+ [non term 7->state 106]
+From state #106
+From state #107
+ [non term 3->state 108] [non term 7->state 35]
+From state #108
+From state #109
+From state #110
+-----------------------------
 ------- CUP v0.11a beta 20060608 Parser Generation Summary -------
-  1 error and 0 warnings
+  0 errors and 27 warnings
   55 terminals, 15 non-terminals, and 54 productions declared, 
-  producing 0 unique parse states.
-  0 terminals declared but not used.
+  producing 111 unique parse states.
+  9 terminals declared but not used.
   0 non-terminals declared but not used.
   0 productions never reduced.
   0 conflicts detected (0 expected).
-  No code produced.
+  Code written to "mj.java", and "sym.java".
 ---------------------------------------------------- (v0.11a beta 20060608)
