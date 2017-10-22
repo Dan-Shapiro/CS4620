@@ -1,0 +1,17 @@
+java -jar java-cup-11a.jar -parser  mj -dump src/mjparser/mj.cup &> javacup.dump
+java -jar JLex.jar src/mjparser/mj.lex
+Processing first section -- user code.
+Processing second section -- JLex declarations.
+Processing third section -- lexical rules.
+Creating NFA machine representation.
+NFA comprised of 851 states.
+Working on character classes.:::::::::..:.::::::::::::.::....:.:..:..:........::.::...:....:......:....:......:..:..........:..........................:.............:.............:..:::...................................................::...........:.......::...........................:..::.............:....:...............................:.............::...:.............:..............................................................................................................:.................................................................:...................................................................................................................::..:::.:.:...........
+NFA has 70 distinct character classes.
+Creating DFA transition table.
+Working on DFA states......................................................................................................................................................................................................................................................................................................
+Minimizing DFA transition table.
+285 states after removal of redundant states.
+Outputting lexical analyzer code.
+mv src/mjparser/mj.lex.java src/mjparser/Yylex.java
+mv -f sym.java src/mjparser/
+mv -f mj.java src/mjparser/

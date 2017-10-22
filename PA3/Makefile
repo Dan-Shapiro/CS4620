@@ -64,13 +64,13 @@ $(PROG).jar: $(SRC_DIR)/$(PROG)Driver.class
 #### mj parser
 $(PARSE_DIR)/mj.java: $(PARSE_DIR)/mj.cup
 	java -jar java-cup-11a.jar -parser  mj -dump $(PARSE_DIR)/mj.cup &> javacup.dump
-	mv -f sym.java $(PARSE_DIR)/
-	mv -f mj.java $(PARSE_DIR)/
 
 #### lexer
 $(PARSE_DIR)/Yylex.java: $(PARSE_DIR)/mj.lex $(PARSE_DIR)/mj.java 
 	java -jar JLex.jar $(PARSE_DIR)/mj.lex
 	mv $(PARSE_DIR)/mj.lex.java $(PARSE_DIR)/Yylex.java
+	mv -f sym.java $(PARSE_DIR)/
+	mv -f mj.java $(PARSE_DIR)/
 
 #### Compile the Main class.
 MAINSCANNER_DEPS = $(SRC_DIR)/$(SCANNER)Driver.java  \

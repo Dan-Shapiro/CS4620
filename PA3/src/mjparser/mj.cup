@@ -1,4 +1,3 @@
-
 package mjparser;
 import java_cup.runtime.*;
 import java.util.*;
@@ -91,17 +90,13 @@ parser code {:
 	non terminal IClassDecl class;
 	non terminal IExp expression;
 	non terminal List<IClassDecl> class_dec;
-	non terminal LinkedList<MethodDecl> method_list;
 	non terminal LinkedList<IClassDecl> class_list;
-	non terminal MethodDecl method;
 	non terminal type;
 	non terminal Formal formal;
 	non terminal LinkedList<Formal> formal_list;
 
 	/* Declare precedence and associativity  here */
-	/*precedence nonassoc LT, EQUAL;*/
-	/*precedence nonassoc IF, ELSE;*/
-	precedence left LT;
+	//precedence left LT;
 	precedence left DOT;
 	precedence left AND;
 	precedence left EQUAL;
@@ -110,10 +105,7 @@ parser code {:
 	precedence right UMINUS;
 	precedence right LPAREN, RPAREN; //BYTE;
 	precedence right ELSE;
-	/*precedence left TIMES, AND;*/
 
-	/* precedence right NOT, UMINUS;
-	   precedence right LPAREN,RPAREN,ELSE; */
 
 
 	/* Meggy Java Grammar */
@@ -139,26 +131,9 @@ RBRACE
 	RESULT = new MainClass(op.line, op.pos, name.lexeme, param.lexeme, new BlockStatement(op.line, op.pos, list));
 
 	:};
-class ::= 
-CLASS:c ID:name LBRACE method_list:mlist RBRACE
-{: RESULT = new TopClassDecl(c.line, c.pos, name.lexeme, new LinkedList<VarDecl>(), mlist); :}
-;
 
 class_list ::= class_list:list class:clss {: if(clss!=null) {list.add(clss); } RESULT=list; :}
 |  {: RESULT = new LinkedList<IClassDecl>(); :}
-;
-
-method ::=
-PUBLIC:p type:t ID:id LPAREN formal_list:fmlist RPAREN
-LBRACE statement_list:stlist RETURN expression:e SEMI
-{: RESULT = new MethodDecl(p.line, p.pos, (IType)t, id.lexeme, fmlist, new LinkedList<VarDecl>(), stlist, e); :}
-|  PUBLIC:p type:t ID:id LPAREN formal_list:fmlist RPAREN
-LBRACE statement_list:stlist RBRACE
-{: RESULT = new MethodDecl(p.line, p.pos, (IType)t, id.lexeme, fmlist, new LinkedList<VarDecl>(), stlist); :}
-;
-
-method_list ::= method_list:list method:mth {: if(mth!=null) { list.add(mth); } RESULT=list; :}
-|  {: RESULT = new LinkedList<MethodDecl>(); :}
 ;
 
 formal ::=
@@ -179,7 +154,7 @@ BOOLEAN:a {: RESULT = new BoolType(a.line, a.pos); :}
 | VOID:a {: RESULT = new VoidType(a.line, a.pos); :}
 | MEGGYCOLOR:a {: RESULT = new ColorType(a.line, a.pos); :}
 | MEGGYBUTTON:a {: RESULT =new ButtonType(a.line, a.pos); :}
-| MEGGYTONE:a {: RESULT = new ToneType(a.line, a.pos); :}
+//| MEGGYTONE:a {: RESULT = new ToneType(a.line, a.pos); :}
 ;
 
 statement ::= MEGGYSETPIXEL LPAREN:op expression:a COMMA expression:b COMMA expression:c RPAREN SEMI
@@ -246,7 +221,7 @@ expression ::= expression:a AND:op expression:b
 | LPAREN:op expression:a RPAREN 
 {: RESULT = a; :} 
 | ID:id {: RESULT = new IdLiteral(id.line, id.pos, id.lexeme); :}
-| THIS:t {: RESULT = new ThisLiteral(t.line, t.pos, t.lexeme, t.value); :}
+//| THIS:t {: RESULT = new ThisLiteral(t.line, t.pos, t.lexeme, t.value); :}
 | NEW:op ID:id LPAREN RPAREN {: RESULT = new NewExp(op.line, op.pos, id.lexeme); :}
 | expression:e1 DOT:dt ID:id LPAREN exp_list:list RPAREN {: RESULT = new CallExp(dt.line, dt.pos, e1, id.lexeme,			list); :}				
 ; 

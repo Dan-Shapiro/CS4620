@@ -1,3 +1,4 @@
+#!/bin/bash
 #!/bin/sh
 # regress.sh is a shell script that compares a MeggyJava compiler (MJ.jar)
 # generated .s files run through the Meggy Simulator (MJSIM.jar) agains
