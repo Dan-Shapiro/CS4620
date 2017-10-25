@@ -21,12 +21,51 @@
 
  
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(2) 
+ ldi    r25,hi8(2) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
  
+  # Load constant int  
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
@@ -34,12 +73,50 @@
  pop    r25 
  push   r24 
   # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
  ldi    r24,lo8(4) 
  ldi    r25,hi8(4) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
  
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
@@ -47,7 +124,7 @@
  pop    r25 
  push   r24 
   # Color expression  
- ldi    r22,1 
+ ldi    r22,6 
   # push one byte expression onto stack 
  push   r22 
  ### Meggy.setPixel(x,y,color) call 
@@ -59,240 +136,272 @@
  pop    r24 
  call   _Z6DrawPxhhh 
  call   _Z12DisplaySlatev 
-MJ_L0:
- # True/1 expression 
- ldi    r22, 1 
- # push one byte expression onto stack 
+  # Load constant int  
+ ldi    r24,lo8(2) 
+ ldi    r25,hi8(2) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(4) 
+ ldi    r25,hi8(4) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Color expression  
+ ldi    r22,6 
+  # push one byte expression onto stack 
  push   r22 
- # if not(condition) 
+ ### Meggy.setPixel(x,y,color) call 
+ # load a one byte expression off stack 
+ pop    r20 
+ # load a one byte expression off stack 
+ pop    r22 
  # load a one byte expression off stack 
  pop    r24 
- ldi    r25,0 
- cp     r24, r25 
-# WANT breq  
- brne   MJ_L1 
- jmp  MJ_L2
-MJ_L1:
-  ### MeggyCheckButton 
- call    _Z16CheckButtonsDownv 
- lds    r24, Button_Up 
- # if button value is zero, push 0 else push 1 
- tst    r24 
- breq   MJ_L6 
- MJ_L7:  
- ldi    r24, 1 
- jmp    MJ_L8 
- MJ_L6: 
- MJ_L8: 
- # push one byte expression onto stack 
+ call   _Z6DrawPxhhh 
+ call   _Z12DisplaySlatev 
+  # Load constant int  
+ ldi    r24,lo8(7) 
+ ldi    r25,hi8(7) 
+ # push two byte expression onto stack 
+ push   r25 
  push   r24 
- # load condition and branch if false 
- # load a one byte expression off  stack 
+ 
+  # Load constant int  
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(6) 
+ ldi    r25,hi8(6) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # MulExp 
+ # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r22 
+ # move low byte src into dest reg 
+ mov    r24, r18 
+ # move low byte src into dest reg 
+ mov    r26, r22 
+ # Do mul operation of two input bytes 
+ muls   r24, r26 
+ # push two byte expression onto stack 
+ push   r1 
+ push   r0 
+ # clear r0 and r1, thanks Brendan! 
+ eor    r0,r0 
+ eor    r1,r1 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
  pop    r24 
- #load zero into reg 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(9) 
+ ldi    r25,hi8(9) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Color expression  
+ ldi    r22,5 
+  # push one byte expression onto stack 
+ push   r22 
+ ### Meggy.setPixel(x,y,color) call 
+ # load a one byte expression off stack 
+ pop    r20 
+ # load a one byte expression off stack 
+ pop    r22 
+ # load a one byte expression off stack 
+ pop    r24 
+ call   _Z6DrawPxhhh 
+ call   _Z12DisplaySlatev 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(2) 
+ ldi    r25,hi8(2) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L44 
  ldi    r25, 0 
- #use cp to set SREG 
- cp     r24, r25 
- #WANT breq MJ_L0 
- brne  MJ_L4 
- jmp    MJ_L3
-MJ_L4:
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do add operation 
- add    r24, r18 
- adc    r25, r19 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,1 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
+ jmp    MJ_L45 
+ MJ_L44: 
+ ldi    r25, hi8(-1) 
+ MJ_L45: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L46 
+ ldi    r19, 0 
+ jmp    MJ_L47 
+ MJ_L46: 
+ ldi    r19, hi8(-1) 
+ MJ_L47: 
  # Do add operation 
  add    r24, r18 
  adc    r25, r19 
@@ -306,8 +415,8 @@ MJ_L4:
  pop    r25 
  push   r24 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
@@ -318,399 +427,84 @@ MJ_L4:
  pop    r24 
  pop    r25 
  push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
+  # load a one byte expression off stack 
+ pop    r18 
  # load a one byte expression off stack 
  pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-jmp MJ_L5
-MJ_L3:
-MJ_L5:
-  ### MeggyCheckButton 
- call    _Z16CheckButtonsDownv 
- lds    r24, Button_Down 
- # if button value is zero, push 0 else push 1 
- tst    r24 
- breq   MJ_L28 
- MJ_L29:  
- ldi    r24, 1 
- jmp    MJ_L30 
- MJ_L28: 
- MJ_L30: 
- # push one byte expression onto stack 
- push   r24 
- # load condition and branch if false 
- # load a one byte expression off  stack 
- pop    r24 
- #load zero into reg 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L48 
  ldi    r25, 0 
- #use cp to set SREG 
- cp     r24, r25 
- #WANT breq MJ_L0 
- brne  MJ_L26 
- jmp    MJ_L25
-MJ_L26:
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,1 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do add operation 
- add    r24, r18 
- adc    r25, r19 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do add operation 
- add    r24, r18 
- adc    r25, r19 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-jmp MJ_L27
-MJ_L25:
-MJ_L27:
-  ### MeggyCheckButton 
- call    _Z16CheckButtonsDownv 
- lds    r24, Button_Left 
- # if button value is zero, push 0 else push 1 
- tst    r24 
- breq   MJ_L50 
- MJ_L51:  
- ldi    r24, 1 
- jmp    MJ_L52 
+ jmp    MJ_L49 
+ MJ_L48: 
+ ldi    r25, hi8(-1) 
+ MJ_L49: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L50 
+ ldi    r19, 0 
+ jmp    MJ_L51 
  MJ_L50: 
+ ldi    r19, hi8(-1) 
+ MJ_L51: 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L52 
+ ldi    r25, 0 
+ jmp    MJ_L53 
  MJ_L52: 
- # push one byte expression onto stack 
- push   r24 
- # load condition and branch if false 
- # load a one byte expression off  stack 
- pop    r24 
- #load zero into reg 
- ldi    r25, 0 
- #use cp to set SREG 
- cp     r24, r25 
- #WANT breq MJ_L0 
- brne  MJ_L48 
- jmp    MJ_L47
-MJ_L48:
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
+ ldi    r25, hi8(-1) 
+ MJ_L53: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L54 
+ ldi    r19, 0 
+ jmp    MJ_L55 
+ MJ_L54: 
+ ldi    r19, hi8(-1) 
+ MJ_L55: 
  # Do add operation 
  add    r24, r18 
  adc    r25, r19 
@@ -723,59 +517,45 @@ MJ_L48:
  pop    r24 
  pop    r25 
  push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(7) 
+ ldi    r25,hi8(7) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
  
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
  pop    r24 
  pop    r25 
  push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L56 
+ ldi    r25, 0 
+ jmp    MJ_L57 
+ MJ_L56: 
+ ldi    r25, hi8(-1) 
+ MJ_L57: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L58 
+ ldi    r19, 0 
+ jmp    MJ_L59 
+ MJ_L58: 
+ ldi    r19, hi8(-1) 
+ MJ_L59: 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
- 
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
@@ -796,12 +576,64 @@ MJ_L48:
  call   _Z6DrawPxhhh 
  call   _Z12DisplaySlatev 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
  
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(2) 
+ ldi    r25,hi8(2) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L60 
+ ldi    r25, 0 
+ jmp    MJ_L61 
+ MJ_L60: 
+ ldi    r25, hi8(-1) 
+ MJ_L61: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L62 
+ ldi    r19, 0 
+ jmp    MJ_L63 
+ MJ_L62: 
+ ldi    r19, hi8(-1) 
+ MJ_L63:  
+# Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
   # Load constant int  
  ldi    r24,lo8(1) 
  ldi    r25,hi8(1) 
@@ -809,18 +641,39 @@ MJ_L48:
  push   r25 
  push   r24 
  
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
  pop    r24 
  pop    r25 
- # Do add operation 
- add    r24, r18 
- adc    r25, r19 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L64 
+ ldi    r25, 0 
+ jmp    MJ_L65 
+ MJ_L64: 
+ ldi    r25, hi8(-1) 
+ MJ_L65: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L66 
+ ldi    r19, 0 
+ jmp    MJ_L67 
+ MJ_L66: 
+ ldi    r19, hi8(-1) 
+ MJ_L67:  
+# Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
  # push two byte expression onto stack 
  push   r25 
- push   r24 
+ push   r24
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
@@ -828,8 +681,8 @@ MJ_L48:
  pop    r25 
  push   r24 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
@@ -840,138 +693,468 @@ MJ_L48:
  pop    r24 
  pop    r25 
  push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
+  # Load constant int  
+ ldi    r24,lo8(7) 
+ ldi    r25,hi8(7) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
  # load a one byte expression off stack 
  pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-jmp MJ_L49
-MJ_L47:
-MJ_L49:
-  ### MeggyCheckButton 
- call    _Z16CheckButtonsDownv 
- lds    r24, Button_Right 
- # if button value is zero, push 0 else push 1 
- tst    r24 
- breq   MJ_L72 
- MJ_L73:  
- ldi    r24, 1 
- jmp    MJ_L74 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L68 
+ ldi    r25, 0 
+ jmp    MJ_L69 
+ MJ_L68: 
+ ldi    r25, hi8(-1) 
+ MJ_L69: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L70 
+ ldi    r19, 0 
+ jmp    MJ_L71 
+ MJ_L70: 
+ ldi    r19, hi8(-1) 
+ MJ_L71:  
+# Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(7) 
+ ldi    r25,hi8(7) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L72 
+ ldi    r25, 0 
+ jmp    MJ_L73 
  MJ_L72: 
+ ldi    r25, hi8(-1) 
+ MJ_L73: 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L74 
+ ldi    r19, 0 
+ jmp    MJ_L75 
  MJ_L74: 
- # push one byte expression onto stack 
+ ldi    r19, hi8(-1) 
+ MJ_L75: 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
  push   r24 
- # load condition and branch if false 
- # load a one byte expression off  stack 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
  pop    r24 
- #load zero into reg 
+ pop    r25 
+ push   r24 
+  # Color expression  
+ ldi    r22,3 
+  # push one byte expression onto stack 
+ push   r22 
+ ### Meggy.setPixel(x,y,color) call 
+ # load a one byte expression off stack 
+ pop    r20 
+ # load a one byte expression off stack 
+ pop    r22 
+ # load a one byte expression off stack 
+ pop    r24 
+ call   _Z6DrawPxhhh 
+ call   _Z12DisplaySlatev 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # neg int 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ ldi     r22, 0 
+ ldi     r23, 0 
+ sub     r22, r24 
+ sbc     r23, r25 
+ # push two byte expression onto stack 
+ push   r23 
+ push   r22 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(10) 
+ ldi    r25,hi8(10) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # neg int 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ ldi     r22, 0 
+ ldi     r23, 0 
+ sub     r22, r24 
+ sbc     r23, r25 
+ # push two byte expression onto stack 
+ push   r23 
+ push   r22 
+  # MulExp 
+ # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r22 
+ # move low byte src into dest reg 
+ mov    r24, r18 
+ # move low byte src into dest reg 
+ mov    r26, r22 
+ # Do mul operation of two input bytes 
+ muls   r24, r26 
+ # push two byte expression onto stack 
+ push   r1 
+ push   r0 
+ # clear r0 and r1, thanks Brendan! 
+ eor    r0,r0 
+ eor    r1,r1 
+  # Load constant int  
+ ldi    r24,lo8(53) 
+ ldi    r25,hi8(53) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Color expression  
+ ldi    r22,0 
+  # push one byte expression onto stack 
+ push   r22 
+ ### Meggy.setPixel(x,y,color) call 
+ # load a one byte expression off stack 
+ pop    r20 
+ # load a one byte expression off stack 
+ pop    r22 
+ # load a one byte expression off stack 
+ pop    r24 
+ call   _Z6DrawPxhhh 
+ call   _Z12DisplaySlatev 
+  # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(6) 
+ ldi    r25,hi8(6) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # neg int 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ ldi     r22, 0 
+ ldi     r23, 0 
+ sub     r22, r24 
+ sbc     r23, r25 
+ # push two byte expression onto stack 
+ push   r23 
+ push   r22 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # neg int 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ ldi     r22, 0 
+ ldi     r23, 0 
+ sub     r22, r24 
+ sbc     r23, r25 
+ # push two byte expression onto stack 
+ push   r23 
+ push   r22 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # MulExp 
+ # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r22 
+ # move low byte src into dest reg 
+ mov    r24, r18 
+ # move low byte src into dest reg 
+ mov    r26, r22 
+ # Do mul operation of two input bytes 
+ muls   r24, r26 
+ # push two byte expression onto stack 
+ push   r1 
+ push   r0 
+ # clear r0 and r1, thanks Brendan! 
+ eor    r0,r0 
+ eor    r1,r1 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(10) 
+ ldi    r25,hi8(10) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+ # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do add operation 
+ add    r24, r18 
+ adc    r25, r19 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(8) 
+ ldi    r25,hi8(8) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Color expression  
+ ldi    r22,2 
+  # push one byte expression onto stack 
+ push   r22 
+ ### Meggy.setPixel(x,y,color) call 
+ # load a one byte expression off stack 
+ pop    r20 
+ # load a one byte expression off stack 
+ pop    r22 
+ # load a one byte expression off stack 
+ pop    r24 
+ call   _Z6DrawPxhhh 
+ call   _Z12DisplaySlatev 
+  # Load constant int  
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Load constant int  
+ ldi    r24,lo8(1) 
+ ldi    r25,hi8(1) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+ # load a one byte expression off stack 
+ pop    r18 
+ # load a two byte expression off stack 
+ pop    r24 
+ pop    r25 
+ # promoting a byte to an int 
+ tst     r18 
+ brlt     MJ_L119 
+ ldi    r19, 0 
+ jmp    MJ_L120 
+ MJ_L119: 
+ ldi    r19, hi8(-1) 
+ MJ_L120: 
+ # Do INT sub operation 
+ sub    r24, r18 
+ sbc    r25, r19 
+ # push hi order byte first 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(0) 
+ ldi    r25,hi8(0) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(7) 
+ ldi    r25,hi8(7) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # load a two byte expression off stack 
+ pop    r18 
+ pop    r19 
+ # load a one byte expression off stack 
+ pop    r24 
+ # promoting a byte to an int 
+ tst     r24 
+ brlt     MJ_L123 
  ldi    r25, 0 
- #use cp to set SREG 
- cp     r24, r25 
- #WANT breq MJ_L0 
- brne  MJ_L70 
- jmp    MJ_L69
-MJ_L70:
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,0 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
+ jmp    MJ_L124 
+ MJ_L123: 
+ ldi    r25, hi8(-1) 
+ MJ_L124: 
  # Do add operation 
  add    r24, r18 
  adc    r25, r19 
@@ -985,7 +1168,7 @@ MJ_L70:
  pop    r25 
  push   r24 
   # Color expression  
- ldi    r22,0 
+ ldi    r22,4 
   # push one byte expression onto stack 
  push   r22 
  ### Meggy.setPixel(x,y,color) call 
@@ -998,32 +1181,12 @@ MJ_L70:
  call   _Z6DrawPxhhh 
  call   _Z12DisplaySlatev 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(3) 
+ ldi    r25,hi8(3) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
  
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do INT sub operation 
- sub    r24, r18 
- sbc    r25, r19 
- # push hi order byte first 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
   # Casting int to byte by popping 
  # 2 bytes off stack and only pushing low order bits 
  # back on.  Low order bits are on top of stack. 
@@ -1031,8 +1194,44 @@ MJ_L70:
  pop    r25 
  push   r24 
   # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
+ ldi    r24,lo8(2) 
+ ldi    r25,hi8(2) 
+ # push two byte expression onto stack 
+ push   r25 
+ push   r24 
+ 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # MulExp 
+ # load a one byte expression off stack 
+ pop    r18 
+ # load a one byte expression off stack 
+ pop    r22 
+ # move low byte src into dest reg 
+ mov    r24, r18 
+ # move low byte src into dest reg 
+ mov    r26, r22 
+ # Do mul operation of two input bytes 
+ muls   r24, r26 
+ # push two byte expression onto stack 
+ push   r1 
+ push   r0 
+ # clear r0 and r1, thanks Brendan! 
+ eor    r0,r0 
+ eor    r1,r1 
+  # Casting int to byte by popping 
+ # 2 bytes off stack and only pushing low order bits 
+ # back on.  Low order bits are on top of stack. 
+ pop    r24 
+ pop    r25 
+ push   r24 
+  # Load constant int  
+ ldi    r24,lo8(5) 
+ ldi    r25,hi8(5) 
  # push two byte expression onto stack 
  push   r25 
  push   r24 
@@ -1044,7 +1243,7 @@ MJ_L70:
  pop    r25 
  push   r24 
   # Color expression  
- ldi    r22,0 
+ ldi    r22,7 
   # push one byte expression onto stack 
  push   r22 
  ### Meggy.setPixel(x,y,color) call 
@@ -1056,70 +1255,6 @@ MJ_L70:
  pop    r24 
  call   _Z6DrawPxhhh 
  call   _Z12DisplaySlatev 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Load constant int  
- ldi    r24,lo8(1) 
- ldi    r25,hi8(1) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
- # load a two byte expression off stack 
- pop    r18 
- pop    r19 
- # load a two byte expression off stack 
- pop    r24 
- pop    r25 
- # Do add operation 
- add    r24, r18 
- adc    r25, r19 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Load constant int  
- ldi    r24,lo8(4) 
- ldi    r25,hi8(4) 
- # push two byte expression onto stack 
- push   r25 
- push   r24 
- 
-  # Casting int to byte by popping 
- # 2 bytes off stack and only pushing low order bits 
- # back on.  Low order bits are on top of stack. 
- pop    r24 
- pop    r25 
- push   r24 
-  # Color expression  
- ldi    r22,1 
-  # push one byte expression onto stack 
- push   r22 
- ### Meggy.setPixel(x,y,color) call 
- # load a one byte expression off stack 
- pop    r20 
- # load a one byte expression off stack 
- pop    r22 
- # load a one byte expression off stack 
- pop    r24 
- call   _Z6DrawPxhhh 
- call   _Z12DisplaySlatev 
-jmp MJ_L71
-MJ_L69:
-MJ_L71:
- # jump to while test 
- jmp   MJ_L0
-MJ_L2:
   
 
 
