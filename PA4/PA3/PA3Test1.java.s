@@ -280,11 +280,3 @@ MJ_L5:
  # jump to while test 
  jmp   MJ_L0
 MJ_L2:
-  
-
-
- /* epilogue start */ 
- endLabel:
- jmp endLabel 
- ret 
- .size   main, .-main 
