@@ -1,0 +1,30 @@
+package symtable;
+
+import symtable.Scope;
+import symtable.Signature;
+import java.io.PrintStream;
+
+
+public class MethodSTE extends STE
+{
+	public Signature mSignature;
+	public Scope mScope;
+	//public HashMap<String,STE> method_mapping = new HashMap<String,STE>();
+	public MethodSTE(Signature sig, String name)
+	{
+		this.mSignature = sig;
+		//this.mScope = scope;
+		this.mName = name;
+	}
+	
+	public Signature getSignature()
+	{
+		return this.mSignature;
+	}
+	
+	public int outputDot(PrintStream printStream, int n) {
+	return 0;
+       
+    }
+       
+}
