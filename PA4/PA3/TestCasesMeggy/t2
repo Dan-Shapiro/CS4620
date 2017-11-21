@@ -1,22 +1,5 @@
-PA2error.java:11: error: ')' expected
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                       ^
-PA2error.java:11: error: illegal start of expression
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                         ^
-PA2error.java:11: error: ';' expected
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                          ^
-PA2error.java:11: error: not a statement
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                            ^
-PA2error.java:11: error: ';' expected
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                                ^
-PA2error.java:11: error: not a statement
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                                               ^
-PA2error.java:11: error: ';' expected
-               Meggy.setPixel( (byte)84me, (byte)2, Meggy.Color.BLUE );
-                                                                    ^
-7 errors
+PA4error2.java:6: error: incompatible types: int cannot be converted to Color
+	   new C().setP(2,(byte)7,Meggy.Color.BLUE);
+	                ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error
