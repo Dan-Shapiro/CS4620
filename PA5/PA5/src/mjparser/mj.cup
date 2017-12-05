@@ -1,0 +1,505 @@
+
+package mjparser;
+import java_cup.runtime.*;
+import java.util.*;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import ast.node.*;
+
+
+
+parser code {:
+
+    public PrintWriter out; 
+    
+    public String programName;
+	
+
+
+    public void unrecovered_syntax_error(Symbol cur_SymbolValue) {
+        report_fatal_error("Fatal syntax error", cur_SymbolValue);
+    }
+    
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        done_parsing();
+        Symbol SymbolValue = (Symbol)info;
+        mjparser.SymbolValue tok = (mjparser.SymbolValue)SymbolValue.value;
+        throw new mjparser.ParseException("Fatal parsing error", 
+                                          tok.line, tok.pos);
+    }
+    
+    public void report_error(String message, Object info) {
+        Symbol SymbolValue = (Symbol)info;
+        mjparser.SymbolValue tok = (mjparser.SymbolValue)SymbolValue.value;
+        System.err.println("[" + tok.line + "," + tok.pos + "] " 
+                               + message + " at " + tok.toString() );
+    }
+            
+:}
+
+/* Notice: all terminals declared here */
+terminal SymbolValue PLUS, MINUS, TIMES, LPAREN, RPAREN;
+terminal SymbolValue LBRACE, RBRACE;
+terminal SymbolValue BOOLEAN, INT;
+terminal SymbolValue BYTE;
+terminal SymbolValue MAIN, IMPORT;
+terminal SymbolValue IF, ELSE;
+terminal SymbolValue LT;
+terminal SymbolValue EQUAL;
+terminal SymbolValue AND, NOT;
+terminal SymbolValue WHILE;
+terminal SymbolValue COMMA, DOT;
+terminal SymbolValue NEW, PUBLIC, RETURN, STATIC;
+terminal SymbolValue STRING, VOID;
+terminal SymbolValue CLASS, EXTENDS;
+terminal SymbolValue LBRACKET, RBRACKET;
+terminal SymbolValue LENGTH;
+terminal SymbolValue SEMI;
+terminal SymbolValue ASSIGN;
+
+terminal SymbolValue MEGGY;
+terminal SymbolValue MEGGYCOLOR;
+terminal SymbolValue MEGGYBUTTON;
+terminal SymbolValue MEGGYTONE;
+terminal SymbolValue MEGGYSETPIXEL;
+terminal SymbolValue MEGGYSETAUXLEDS;
+terminal SymbolValue MEGGYTONESTART;
+terminal SymbolValue MEGGYDELAY;
+terminal SymbolValue MEGGYGETPIXEL;
+terminal SymbolValue MEGGYCHECKBUTTON;
+
+terminal SymbolValue INT_LITERAL, ID;
+terminal SymbolValue TRUE, FALSE;
+terminal SymbolValue COLOR_LITERAL, BUTTON_LITERAL, TONE_LITERAL;
+terminal SymbolValue THIS;
+
+
+/* bogus terminal for unary precedence declaration */
+terminal UMINUS;
+
+non terminal program;
+non terminal LinkedList<IClassDecl> otherClass;
+//non terminal Integer exp;
+non terminal IStatement statement;
+non terminal List statement_list;
+non terminal MainClass main_class;
+non terminal BlockStatement block_statement;
+//non terminal IExp boolExp;
+non terminal IExp operation;
+//non terminal IExp boolVal;
+//non terminal IExp rightSide;
+//non terminal IExp op2;
+//non terminal IStatement ifType;
+non terminal LinkedList<MethodDecl> methodDecl;
+non terminal LinkedList<Formal> formal;
+non terminal IType type;
+non terminal LinkedList<IExp> args;
+non terminal IExp returnStatement;
+non terminal LinkedList<VarDecl> varibleDecl;
+
+/* Declare precedence and associativity  here declaration */
+
+
+precedence right NOT;
+precedence left AND;
+precedence left LT,EQUAL;
+//precedence nonassoc EQUAL;
+
+precedence left PLUS,MINUS;
+precedence left TIMES;
+precedence left UMINUS; 
+precedence right BYTE;
+precedence nonassoc ELSE;
+precedence nonassoc IF;
+precedence right THIS;
+precedence right DOT;
+
+/* Meggy Java Grammar */
+start with program;
+
+program ::= 
+    IMPORT:op1 MEGGY SEMI main_class:op otherClass:p {: 
+
+					LinkedList<IClassDecl> _classDecls = new LinkedList<IClassDecl>() ;
+					_classDecls.addAll(p);
+					 RESULT = new Program(op1.line,op1.pos,op,_classDecls);
+					//System.out.println("program");
+:}
+    ;
+    
+
+main_class ::=
+        CLASS ID:name         
+            {:  
+
+                // Check filename is class name, if not exit with error message
+
+		if(!parser.programName.equals(name+".java"))
+		{	System.out.println("Filename and Classname are different");
+
+			System.exit(0);}
+            :}
+
+	 LBRACE PUBLIC STATIC VOID MAIN:op1 LPAREN STRING LBRACKET RBRACKET ID:param RPAREN
+
+         block_statement:op RBRACE
+          {:
+
+	//System.out.println("End of Main");
+  	RESULT = new MainClass(op1.line,op1.pos,name+"",param+"",op); 
+
+          :} ;
+	
+
+
+
+	
+	
+
+
+        block_statement::= LBRACE:ex statement_list:list RBRACE 
+          {:
+          // end of class
+
+   		//System.out.println(" main");
+						
+		RESULT = new BlockStatement(ex.line,ex.pos,list);
+
+
+          :} ; 
+
+
+
+		statement_list ::=  statement:op2 statement_list:lst1 
+						{:
+						List list = new LinkedList<IStatement>();
+
+								if(lst1!=null){						
+								list.addAll(lst1);	
+								}
+								//System.out.println("statement "+op2);
+if(op2!=null){
+								list.add(op2);
+}
+							RESULT = list;
+								:}| LBRACE statement_list:list1 RBRACE
+								 {:List list = new LinkedList<IStatement>();
+								if(list1!=null){						
+								list.addAll(list1);	
+								}
+
+								RESULT = list;:}
+								|
+					{:LinkedList list = new LinkedList<IStatement>();
+									RESULT = list;:}; 
+
+	
+	statement ::= MEGGYSETPIXEL:op LPAREN operation:e COMMA operation:e1 COMMA operation:e2 RPAREN SEMI 
+						{:	
+							//System.out.println("Setpixel ");
+							//ColorLiteral c = new ColorLiteral(op.line,op.pos,e2.lexeme,e2.value);
+							RESULT = new MeggySetPixel(op.line,op.pos,e,e1,e2);
+					
+						:}
+						|MEGGYDELAY:op LPAREN operation:e RPAREN  SEMI 
+						{:	
+							//System.out.println("delay");
+							RESULT = new MeggyDelay(op.line,op.pos,e);
+
+						:}
+						|MEGGYTONESTART:op LPAREN operation:e COMMA operation:e2 RPAREN SEMI 
+						{:	
+							//System.out.println("delay");
+							RESULT = new MeggyToneStart(op.line,op.pos,e,e2);
+
+						:}
+					
+						|WHILE:op LPAREN operation:e RPAREN block_statement:stmt
+						{:	//System.out.println("while");
+							RESULT= new WhileStatement(op.line,op.pos,e,stmt);
+						:}
+					|IF:op LPAREN operation:e RPAREN block_statement:e1
+					{: RESULT = new IfStatement(op.line,op.pos,e,e1,null);
+						//System.out.printf("cond -> if booleanExp then stmt\n"); 
+					:}
+					|IF:op LPAREN operation:e RPAREN statement:e1
+					{: RESULT = new IfStatement(op.line,op.pos,e,e1,null);
+						//System.out.printf("cond -> if booleanExp then stmt\n"); 
+					:}
+					|IF:op LPAREN operation:e RPAREN statement:e1 ELSE statement:e2
+					{: RESULT = new IfStatement(op.line,op.pos,e,e1,e2);
+						//System.out.printf("cond -> if booleanExp then stmt\n"); 
+					:}
+					|IF:op LPAREN operation:e RPAREN block_statement:e1 ELSE block_statement:e2
+					{: RESULT = new IfStatement(op.line,op.pos,e,e1,e2);
+						//System.out.printf("cond -> if booleanExp then stmt\n"); 
+					:}
+					|IF:op LPAREN operation:e RPAREN block_statement:e1 ELSE statement:e2
+					{: RESULT = new IfStatement(op.line,op.pos,e,e1,e2);
+						//System.out.printf("cond -> if booleanExp then stmt\n"); 
+					:}
+					|operation:e1 DOT ID:name LPAREN args:_args RPAREN SEMI
+					{:
+					RESULT = new CallStatement(name.line,name.pos,e1,name.lexeme,_args);
+					:}
+					|ID:name ASSIGN operation:op SEMI
+					{:
+					RESULT = new AssignStatement(name.line,name.pos, name.lexeme,op);:}
+					;
+
+
+					operation ::= operation:e PLUS:op operation:e1 {:	
+						//System.out.println("plus");
+						RESULT = new PlusExp(op.line, op.pos, e, e1);
+
+					:} | operation:e MINUS:op operation:e1 {:
+						//System.out.println("min");
+						RESULT = new MinusExp(op.line, op.pos, e, e1);
+
+					:}| operation:e TIMES:op operation:e1 {:
+						//System.out.println("Times");
+						RESULT = new MulExp(op.line, op.pos, e, e1);
+					:}
+
+
+					
+					
+					| MINUS:ex operation:op {:
+					RESULT = new NegExp(ex.line,ex.pos,op);
+					 //System.out.println("Unary minus");
+					:} %prec UMINUS
+
+					|INT_LITERAL:ex 
+					{: //System.out.println("int");
+					RESULT = new IntLiteral(ex.line,ex.pos,ex.lexeme,ex.value); :}
+
+					|LPAREN operation:e RPAREN{: RESULT =e; :}
+
+					|operation:e AND:op operation:e1
+					{:
+						//System.out.println("and");
+
+						RESULT = new AndExp(op.line, op.pos, e, e1);
+					:}
+					| operation:e EQUAL:op operation:e1
+					{:
+						//System.out.println("equal");
+						RESULT = new EqualExp(op.line, op.pos, e, e1);
+
+					:}
+
+
+					| LPAREN BYTE:op RPAREN LPAREN operation:e RPAREN  
+ 					{:     // System.out.println("op to byte operation");
+
+
+						RESULT = new ByteCast(op.line, op.pos,e);
+					:}
+
+					| LPAREN BYTE:op RPAREN  INT_LITERAL:ex
+ 					{:      //System.out.println("op to byte operation");
+					IntLiteral e =  new IntLiteral(ex.line,ex.pos,ex.lexeme,ex.value);
+
+						RESULT = new ByteCast(op.line, op.pos,e);
+					:}
+					| LPAREN BYTE:op RPAREN  ID:ex
+ 					{:      //System.out.println("op to byte operation");
+					IdLiteral e =  new IdLiteral(ex.line,ex.pos,ex+"");
+
+						RESULT = new ByteCast(op.line, op.pos,e);
+					:}	
+					
+					|NOT:op operation:e
+					{:
+						//System.out.println("not");
+						RESULT= new NotExp(op.line,op.pos,e);
+					:}| MEGGYCHECKBUTTON:ex LPAREN BUTTON_LITERAL:op RPAREN 
+						{:
+						//System.out.println("CheckButton");
+						ButtonLiteral b= new ButtonLiteral(ex.line,ex.pos,op.lexeme,op.value);
+						RESULT = new MeggyCheckButton(ex.line,ex.pos,b);
+						:}
+
+						|MEGGYGETPIXEL:op LPAREN operation:e COMMA operation:e1 RPAREN
+						{:	//System.out.println("getPixel");
+							RESULT= new MeggyGetPixel(op.line,op.pos,e,e1);
+						:}	
+					
+					| TRUE:op1 {: RESULT = new TrueLiteral(op1.line,op1.pos,op1.lexeme,op1.value);:}
+
+						 | FALSE:op2  {: RESULT = new FalseLiteral(op2.line,op2.pos,op2.lexeme,op2.value);:}
+
+						| COLOR_LITERAL:op {: RESULT = new ColorLiteral(op.line,op.pos,op.lexeme,op.value);
+								//System.out.println("Color literal");
+								:} 
+								| operation:e1 LT:ex operation:e2 {:
+									RESULT = new LtExp(ex.line,ex.pos,e1,e2);
+									:}
+						|ID:name {: RESULT = new IdLiteral(name.line,name.pos,name+"");:}
+						|NEW:op ID:name LPAREN RPAREN{:RESULT = new NewExp(op.line,op.pos,name+"");:}
+						|THIS:op {:RESULT= new ThisLiteral(op.line,op.pos,op.lexeme,op.value);:}
+						|TONE_LITERAL:op{:RESULT = new ToneLiteral(op.line,op.pos,op.lexeme,op.value);:}
+						|operation:e1 DOT ID:name LPAREN args:_args RPAREN
+						{:
+						RESULT = new CallExp(name.line,name.pos,e1,name.lexeme,_args);
+						:}
+						
+						;
+/*PA4 grammar starts here*/
+
+otherClass ::= CLASS:op1 ID:name LBRACE varibleDecl:var methodDecl:methods RBRACE otherClass:other 
+	       {:
+		LinkedList<VarDecl> _varDecls = new LinkedList<VarDecl>();
+		LinkedList<MethodDecl> _methodDecls = new LinkedList<MethodDecl>();
+		//System.out.println("before : class is "+_methodDecls+"  and statement list is "+methods );
+		if(var!=null){
+		_varDecls.addAll(var);
+		}
+		if(methods!=null){
+		_methodDecls.addAll(methods);
+		}
+		
+		//System.out.println(" class is "+name );		
+		LinkedList<IClassDecl> classDecl = new LinkedList<IClassDecl>();
+		TopClassDecl classdec = new TopClassDecl(op1.line,op1.pos,name+"",_varDecls,_methodDecls);
+		classDecl.add((IClassDecl)classdec);
+		if(other!=null){
+			classDecl.addAll(other);
+		}			
+		RESULT = classDecl;		
+		:}
+		|CLASS:op1 ID:name EXTENDS ID:parent LBRACE varibleDecl:var methodDecl:methods RBRACE otherClass:other 
+	       {:
+		LinkedList<VarDecl> _varDecls = new LinkedList<VarDecl>();
+		LinkedList<MethodDecl> _methodDecls = new LinkedList<MethodDecl>();
+		//System.out.println("before : class is "+_methodDecls+"  and statement list is "+methods );
+		if(var!=null){
+		_varDecls.addAll(var);
+		}
+		if(methods!=null){
+		_methodDecls.addAll(methods);
+		}
+		//System.out.println(" class is "+name );		
+		LinkedList<IClassDecl> classDecl = new LinkedList<IClassDecl>();
+		ChildClassDecl classdec = new ChildClassDecl(op1.line,op1.pos,name+"",parent+"",_varDecls,_methodDecls);
+		classDecl.add((IClassDecl)classdec);
+		if(other!=null){
+			classDecl.addAll(other);
+		}			
+		RESULT = classDecl;		
+		:}
+		 |{:
+		LinkedList<IClassDecl> classDecl = new LinkedList<IClassDecl>();
+		//LinkedList<MethodDecl> _methodDecls = new LinkedList<MethodDecl>();
+		//_methodDecls.add(methods);
+		//RESULT=new TopClassDecl(0,0,"",_varDecls,_methodDecls);
+		RESULT = classDecl;		
+		:}
+		;
+
+//blockstatment has LBRACE RBRACE in it
+methodDecl ::=  PUBLIC:op type:typ ID:name LPAREN formal:param RPAREN LBRACE varibleDecl:var statement_list:block returnStatement:rstmt RBRACE methodDecl:methods 
+		{:
+		LinkedList<Formal> _formals = new LinkedList<Formal>();
+		_formals.addAll(param);
+     		LinkedList<VarDecl> _varDecls = new LinkedList<VarDecl>();// not required
+    		LinkedList<IStatement> _statements = new LinkedList<IStatement>(); //--> blockstatement
+		//System.out.println(" method is "+name.lexeme );
+		_statements.addAll(block);
+		if(var!=null){
+		_varDecls.addAll(var);
+		}
+		MethodDecl method=new MethodDecl(op.line,op.pos,typ,name+"",_formals,_varDecls,_statements,rstmt);
+		LinkedList<MethodDecl> methodList = new LinkedList<MethodDecl>();
+		if (methods!=null)
+			methodList.addAll(methods);
+		methodList.add(method);
+		RESULT=methodList;
+		
+				
+		:}
+               
+		|{:
+		RESULT=  new LinkedList<MethodDecl>();
+		:}
+		;					
+formal::=	type:typ ID:name COMMA formal:list
+		{:
+		LinkedList lst = new LinkedList<Formal>();
+		Formal formal= new Formal(name.line,name.pos,typ,name.lexeme);
+		//System.out.println("type,formal");		
+		if (list!=null)
+		{
+			//System.out.println(" formal ::"+list); 
+			lst.addAll(list);
+		}
+		lst.add(formal);
+		//System.out.println(" inside parameter list is "+lst+"  and param is " +formal);
+		
+		RESULT=lst;
+		:}
+		|type:typ ID:name
+		{:
+		//System.out.println("type");
+		LinkedList lst = new LinkedList<Formal>();
+		Formal formal= new Formal(name.line,name.pos,typ,name.lexeme);
+		lst.add(formal);
+		RESULT=lst;
+		:}
+		|
+		{:LinkedList lst = new LinkedList<Formal>();
+			//System.out.println(" inside empty parameter list is "+lst);
+		RESULT=lst;
+		:} 
+
+		;
+
+type ::= INT:op {:RESULT = new IntType(op.line,op.pos);:}|BOOLEAN:op{:RESULT = new BoolType(op.line,op.pos);:}|
+	BYTE:op{:RESULT = new ByteType(op.line,op.pos);:}|VOID:op{:RESULT = new VoidType(op.line,op.pos);:}|
+	MEGGYCOLOR:op{:RESULT = new ColorType(op.line,op.pos);:}|MEGGYBUTTON:op {:RESULT = new ButtonType(op.line,op.pos);:}
+	|MEGGYTONE:op{:RESULT = new ToneType(op.line,op.pos);:} | ID:op {:RESULT = new ClassType(op.line,op.pos,op.lexeme);:}
+	;
+
+args::= operation:op COMMA args:lst
+	{:
+	LinkedList list = new LinkedList<IExp>();
+	if(lst!=null){
+		list.addAll(lst);
+	}
+	list.add(op);
+	RESULT= list;
+	:}
+	|operation:op{:
+	LinkedList list = new LinkedList<IExp>();
+	list.add(op);
+	//System.out.println("Single parameter");
+	RESULT= list;:}
+	|{:
+	RESULT= new LinkedList<IExp>();
+	:}
+;
+returnStatement::= RETURN operation:op SEMI{://System.out.println("return statement : "+ op);
+RESULT = op; :}
+		  | {://System.out.println("no return type"); 
+RESULT=null;:}
+		 ;
+/* PA5 Grammar starts here */
+varibleDecl ::= varibleDecl:varList type:typ ID:name SEMI  
+		{:
+		LinkedList<VarDecl> _varDecls = new LinkedList<VarDecl>();		
+		VarDecl var = new VarDecl(name.line,name.pos,typ,name.lexeme);
+		if(varList!=null)
+			_varDecls.addAll(varList);		
+		_varDecls.add(var);
+		RESULT = _varDecls;:}
+		|{:
+		RESULT =new LinkedList<VarDecl>();
+		:}
+		;

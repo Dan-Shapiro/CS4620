@@ -1,0 +1,295 @@
+2017-10-18 19:17:20,463 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-22 17:32:51,047 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-22 18:06:32,889 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-22 18:12:59,851 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:07:50,260 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 8
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:08:00,734 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:08:47,389 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 8
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:08:57,463 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:11:43,881 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 8
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:11:54,168 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:14:02,910 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 8
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:14:13,182 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:16:44,335 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 249
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:16:53,555 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:18:08,786 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 10
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:18:17,976 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:19:52,122 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 10
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:20:36,177 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 10
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:20:45,018 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-10-25 22:21:19,701 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 10
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-10-25 22:27:01,173 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 00:32:39,087 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 00:32:39,950 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 00:32:40,914 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:10:44,964 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:10:45,980 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:11:51,940 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:11:52,908 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:13:24,659 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:13:25,629 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:14:04,184 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:14:05,162 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:15:35,380 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:15:36,362 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:16:33,482 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:16:34,650 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:16:35,656 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:17:21,032 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:17:22,008 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:17:33,544 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:17:34,512 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:25:28,700 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-11-21 03:25:29,696 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-01 00:12:34,016 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-01 00:12:35,520 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-04 23:44:02,533 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-04 23:44:04,416 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.NullPointerException
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-04 23:44:05,849 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-04 23:44:07,513 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-04 23:44:08,615 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:05,742 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:07,351 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.NullPointerException
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 00:38:08,657 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:09,829 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:11,081 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:35,071 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ArrayIndexOutOfBoundsException: 255
+	at machine.MachineState.setDisplaySlate(MachineState.java:523)
+	at machine.functions.FuncSetPix.exec(FuncSetPix.java:34)
+	at instructions.InstrCall.execute(InstrCall.java:38)
+	at instructions.Instr.executeWrapper(Instr.java:43)
+	at machine.MachineState.executeInstruction(MachineState.java:321)
+	at ui.AVRSim.runAssem(AVRSim.java:97)
+	at ui.AVRSim.run(AVRSim.java:82)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 00:38:39,998 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:38:41,219 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:51:17,629 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ClassCastException: instructions.InstrPop cannot be cast to java.util.List
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 00:51:19,224 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ClassCastException: instructions.InstrPop cannot be cast to java.util.List
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 00:51:20,849 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 00:51:22,004 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 01:00:02,782 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ClassCastException: instructions.InstrPop cannot be cast to java.util.List
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 01:00:04,726 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ClassCastException: instructions.InstrPop cannot be cast to java.util.List
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 01:00:06,240 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 01:00:40,238 [main] FATAL ui.AVRSim - Encountered fatal error...
+java.lang.ClassCastException: instructions.InstrPop cannot be cast to java.util.List
+	at parse.ReadAssem.getProgram(ReadAssem.java:37)
+	at ui.AVRSim.loadAssemFile(AVRSim.java:67)
+	at ui.AVRSim.run(AVRSim.java:76)
+	at ui.Main.main(Main.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.simontuffs.onejar.Boot.run(Boot.java:340)
+	at com.simontuffs.onejar.Boot.main(Boot.java:166)
+2017-12-05 01:10:30,119 [main] FATAL ui.Main - Assembly File passed in does not exist.
+2017-12-05 01:10:31,274 [main] FATAL ui.Main - Assembly File passed in does not exist.

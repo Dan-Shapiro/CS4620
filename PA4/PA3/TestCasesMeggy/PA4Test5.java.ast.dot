@@ -1,0 +1,103 @@
+digraph ASTGraph {
+0 [ label="Program" ];
+1 [ label="MainClass" ];
+0 -> 1
+2 [ label="BlockStatement" ];
+1 -> 2
+3 [ label="CallStatement" ];
+2 -> 3
+4 [ label="NewExp" ];
+3 -> 4
+5 [ label="ButtonLiteral\nMeggy.Button.Up" ];
+3 -> 5
+6 [ label="TopClassDecl" ];
+0 -> 6
+7 [ label="MethodDecl" ];
+6 -> 7
+8 [ label="BoolType" ];
+7 -> 8
+9 [ label="NotExp" ];
+7 -> 9
+10 [ label="AndExp" ];
+9 -> 10
+11 [ label="AndExp" ];
+10 -> 11
+12 [ label="AndExp" ];
+11 -> 12
+13 [ label="FalseLiteral\nfalse" ];
+12 -> 13
+14 [ label="LtExp" ];
+12 -> 14
+15 [ label="NegExp" ];
+14 -> 15
+16 [ label="IntLiteral\n3" ];
+15 -> 16
+17 [ label="IntLiteral\n5" ];
+14 -> 17
+18 [ label="EqualExp" ];
+11 -> 18
+19 [ label="PlusExp" ];
+18 -> 19
+20 [ label="IntLiteral\n3" ];
+19 -> 20
+21 [ label="IntLiteral\n1" ];
+19 -> 21
+22 [ label="IntLiteral\n4" ];
+18 -> 22
+23 [ label="EqualExp" ];
+10 -> 23
+24 [ label="MinusExp" ];
+23 -> 24
+25 [ label="IntLiteral\n2" ];
+24 -> 25
+26 [ label="IntLiteral\n4" ];
+24 -> 26
+27 [ label="MulExp" ];
+23 -> 27
+28 [ label="ByteCast" ];
+27 -> 28
+29 [ label="IntLiteral\n2" ];
+28 -> 29
+30 [ label="ByteCast" ];
+27 -> 30
+31 [ label="IntLiteral\n1" ];
+30 -> 31
+32 [ label="MethodDecl" ];
+6 -> 32
+33 [ label="VoidType" ];
+32 -> 33
+34 [ label="Formal" ];
+32 -> 34
+35 [ label="ButtonType" ];
+34 -> 35
+36 [ label="CallStatement" ];
+32 -> 36
+37 [ label="ThisLiteral\nthis" ];
+36 -> 37
+38 [ label="MethodDecl" ];
+6 -> 38
+39 [ label="IntType" ];
+38 -> 39
+40 [ label="Formal" ];
+38 -> 40
+41 [ label="ColorType" ];
+40 -> 41
+42 [ label="Formal" ];
+38 -> 42
+43 [ label="ToneType" ];
+42 -> 43
+44 [ label="IfStatement" ];
+38 -> 44
+45 [ label="MeggyCheckButton" ];
+44 -> 45
+46 [ label="ButtonLiteral\nMeggy.Button.Down" ];
+45 -> 46
+47 [ label="BlockStatement" ];
+44 -> 47
+48 [ label="MeggyDelay" ];
+47 -> 48
+49 [ label="IntLiteral\n100" ];
+48 -> 49
+50 [ label="IntLiteral\n2" ];
+38 -> 50
+}

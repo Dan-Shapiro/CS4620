@@ -1,0 +1,119 @@
+digraph ASTGraph {
+0 [ label="Program" ];
+1 [ label="MainClass" ];
+0 -> 1
+2 [ label="BlockStatement" ];
+1 -> 2
+3 [ label="CallStatement" ];
+2 -> 3
+4 [ label="NewExp" ];
+3 -> 4
+5 [ label="TopClassDecl" ];
+0 -> 5
+6 [ label="VarDecl" ];
+5 -> 6
+7 [ label="IntType" ];
+6 -> 7
+8 [ label="VarDecl" ];
+5 -> 8
+9 [ label="ByteType" ];
+8 -> 9
+10 [ label="MethodDecl" ];
+5 -> 10
+11 [ label="VoidType" ];
+10 -> 11
+12 [ label="CallStatement" ];
+10 -> 12
+13 [ label="NewExp" ];
+12 -> 13
+14 [ label="IntLiteral\n3" ];
+12 -> 14
+15 [ label="MeggySetPixel" ];
+10 -> 15
+16 [ label="ByteCast" ];
+15 -> 16
+17 [ label="IntLiteral\n4" ];
+16 -> 17
+18 [ label="ByteCast" ];
+15 -> 18
+19 [ label="IntLiteral\n0" ];
+18 -> 19
+20 [ label="ColorLiteral\nMeggy.Color.ORANGE" ];
+15 -> 20
+21 [ label="MethodDecl" ];
+5 -> 21
+22 [ label="IntType" ];
+21 -> 22
+23 [ label="IntLiteral\n5" ];
+21 -> 23
+24 [ label="TopClassDecl" ];
+0 -> 24
+25 [ label="VarDecl" ];
+24 -> 25
+26 [ label="ByteType" ];
+25 -> 26
+27 [ label="VarDecl" ];
+24 -> 27
+28 [ label="ByteType" ];
+27 -> 28
+29 [ label="VarDecl" ];
+24 -> 29
+30 [ label="IntType" ];
+29 -> 30
+31 [ label="VarDecl" ];
+24 -> 31
+32 [ label="ToneType" ];
+31 -> 32
+33 [ label="MethodDecl" ];
+24 -> 33
+34 [ label="VoidType" ];
+33 -> 34
+35 [ label="Formal" ];
+33 -> 35
+36 [ label="IntType" ];
+35 -> 36
+37 [ label="VarDecl" ];
+33 -> 37
+38 [ label="ColorType" ];
+37 -> 38
+39 [ label="MeggySetPixel" ];
+33 -> 39
+40 [ label="ByteCast" ];
+39 -> 40
+41 [ label="MinusExp" ];
+40 -> 41
+42 [ label="CallExp" ];
+41 -> 42
+43 [ label="ThisLiteral\nthis" ];
+42 -> 43
+44 [ label="CallExp" ];
+41 -> 44
+45 [ label="ThisLiteral\nthis" ];
+44 -> 45
+46 [ label="ByteCast" ];
+39 -> 46
+47 [ label="IntLiteral\n0" ];
+46 -> 47
+48 [ label="ColorLiteral\nMeggy.Color.BLUE" ];
+39 -> 48
+49 [ label="MethodDecl" ];
+24 -> 49
+50 [ label="IntType" ];
+49 -> 50
+51 [ label="VarDecl" ];
+49 -> 51
+52 [ label="ByteType" ];
+51 -> 52
+53 [ label="VarDecl" ];
+49 -> 53
+54 [ label="IntType" ];
+53 -> 54
+55 [ label="VarDecl" ];
+49 -> 55
+56 [ label="BoolType" ];
+55 -> 56
+57 [ label="IntLiteral\n5" ];
+49 -> 57
+58 [ label="TopClassDecl" ];
+0 -> 58
+}

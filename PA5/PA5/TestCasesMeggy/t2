@@ -1,0 +1,4 @@
+PA5error2.java:17: error: variable a is already defined in method myMethod
+	public void myMethod(int a, int a){}
+	                                ^
+1 error
