@@ -1,0 +1,83 @@
+digraph ASTGraph {
+0 [ label="Program" ];
+1 [ label="MainClass" ];
+0 -> 1
+2 [ label="BlockStatement" ];
+1 -> 2
+3 [ label="CallStatement" ];
+2 -> 3
+4 [ label="NewExp" ];
+3 -> 4
+5 [ label="TrueLiteral\ntrue" ];
+3 -> 5
+6 [ label="ColorLiteral\nMeggy.Color.ORANGE" ];
+3 -> 6
+7 [ label="ByteCast" ];
+3 -> 7
+8 [ label="IntLiteral\n1" ];
+7 -> 8
+9 [ label="TopClassDecl" ];
+0 -> 9
+10 [ label="MethodDecl" ];
+9 -> 10
+11 [ label="VoidType" ];
+10 -> 11
+12 [ label="MeggyDelay" ];
+10 -> 12
+13 [ label="IntLiteral\n300" ];
+12 -> 13
+14 [ label="MethodDecl" ];
+9 -> 14
+15 [ label="IntType" ];
+14 -> 15
+16 [ label="Formal" ];
+14 -> 16
+17 [ label="BoolType" ];
+16 -> 17
+18 [ label="Formal" ];
+14 -> 18
+19 [ label="ColorType" ];
+18 -> 19
+20 [ label="Formal" ];
+14 -> 20
+21 [ label="ByteType" ];
+20 -> 21
+22 [ label="VarDecl" ];
+14 -> 22
+23 [ label="IntType" ];
+22 -> 23
+24 [ label="AssignStatement" ];
+14 -> 24
+25 [ label="IntLiteral\n5" ];
+24 -> 25
+26 [ label="CallStatement" ];
+14 -> 26
+27 [ label="ThisLiteral\nthis" ];
+26 -> 27
+28 [ label="IdLiteral\nret" ];
+14 -> 28
+29 [ label="TopClassDecl" ];
+0 -> 29
+30 [ label="MethodDecl" ];
+29 -> 30
+31 [ label="ClassType" ];
+30 -> 31
+32 [ label="Formal" ];
+30 -> 32
+33 [ label="ToneType" ];
+32 -> 33
+34 [ label="Formal" ];
+30 -> 34
+35 [ label="ButtonType" ];
+34 -> 35
+36 [ label="VarDecl" ];
+30 -> 36
+37 [ label="ClassType" ];
+36 -> 37
+38 [ label="AssignStatement" ];
+30 -> 38
+39 [ label="NewExp" ];
+38 -> 39
+40 [ label="IdLiteral\nx" ];
+30 -> 40
+}
